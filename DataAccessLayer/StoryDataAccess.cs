@@ -59,10 +59,11 @@ namespace DataAccessLayer
                         // specify what type of command to use
                         _command.CommandType = CommandType.StoredProcedure;
                         _command.Parameters.AddWithValue("@storyFile", storyFile);
-                        _command.Parameters.AddWithValue("@storyRestriction", story.storyRestriction);
+                        _command.Parameters.AddWithValue("@storyRestrictionID", story.storyRestrictionID);
                         _command.Parameters.AddWithValue("@storyUserID", story.storyUserID);
                         _command.Parameters.AddWithValue("@storyGenreID", story.storyGenreID);
                         _command.Parameters.AddWithValue("@storyTitle", story.storyTitle);
+                        _command.Parameters.AddWithValue("@storyFileName", story.storyFileName);
                         // this is where the connection is opened
                         _connection.Open();
                         // this is where all commands will be executed

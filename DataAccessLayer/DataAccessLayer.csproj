@@ -43,10 +43,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataObjects\ErrorDAO.cs" />
+    <Compile Include="DataObjects\GenreDAO.cs" />
     <Compile Include="DataObjects\StoryDAO.cs" />
+    <Compile Include="DataObjects\UserDAO.cs" />
     <Compile Include="ErrorDataAccess.cs" />
+    <Compile Include="GenreDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StoryDataAccess.cs" />
+    <Compile Include="UserDataAccess.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogicLayer\BusinessLogicLayer.csproj">
