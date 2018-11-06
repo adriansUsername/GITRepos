@@ -163,9 +163,9 @@ namespace DataAccessLayer
                             _reader.Read();
                             // create object to hold info from database
                             genre.genreID = genreID;
-                            genre.genreName = _reader.GetString(1);
-                            genre.genreDescription = _reader.GetString(2);
-                            genre.genreIsFiction = _reader.GetBoolean(3);
+                            genre.genreName = (string)_reader["genreName"];
+                            genre.genreDescription = (string)_reader["genreDescription"];
+                            genre.genreIsFiction = (bool)_reader["genreIsFiction"];
                         }
                     }
                 }
@@ -212,10 +212,10 @@ namespace DataAccessLayer
                                 {
                                     // create object to hold info from database
                                     GenreDAO genre = new GenreDAO();
-                                    genre.genreID = _reader.GetInt32(0);
-                                    genre.genreName = _reader.GetString(1);
-                                    genre.genreDescription = _reader.GetString(2);
-                                    genre.genreIsFiction = _reader.GetBoolean(3);
+                                    genre.genreID = _reader.GetInt32(_reader.GetOrdinal("genreID"));
+                                    genre.genreName = (string)_reader["genreName"];
+                                    genre.genreDescription = (string)_reader["genreDescription"];
+                                    genre.genreIsFiction = (bool)_reader["genreIsFiction"];
                                     // add to list that will be returned
                                     genreList.Add(genre);
                                 }

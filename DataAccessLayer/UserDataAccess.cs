@@ -174,16 +174,16 @@ namespace DataAccessLayer
                             _reader.Read();
                             // create object to hold info from database
                             user.userID = userID;
-                            user.userName = _reader.GetString(1);
-                            user.userPassword = _reader.GetString(2);
-                            user.userFirstName = _reader.GetString(3);
-                            user.userLastName = _reader.GetString(4);
-                            user.userCity = _reader.GetString(5);
-                            user.userState = _reader.GetString(6);
-                            user.userCountry = _reader.GetString(7);
-                            user.userRoleID = _reader.GetInt32(8);
-                            user.userEdited = _reader.GetInt32(9);
-                            user.userWords = _reader.GetInt32(10);
+                            user.userName = (string)_reader["userName"];
+                            user.userPassword = (string)_reader["userPassword"];
+                            user.userFirstName = (string)_reader["userFirstName"];
+                            user.userLastName = (string)_reader["userLastName"];
+                            user.userCity = (string)_reader["userCity"];
+                            user.userState = (string)_reader["userState"];
+                            user.userCountry = (string)_reader["userCountry"];
+                            user.userRoleID = _reader.GetInt32(_reader.GetOrdinal("userRoleID"));
+                            user.userEdited = _reader.GetInt32(_reader.GetOrdinal("userEdited"));
+                            user.userWords = _reader.GetInt32(_reader.GetOrdinal("userWords"));
                         }
                     }
                 }
@@ -230,17 +230,17 @@ namespace DataAccessLayer
                                 {
                                     // create object to hold info from database
                                     UserDAO user = new UserDAO();
-                                    user.userID = _reader.GetInt32(0);
-                                    user.userName = _reader.GetString(1);
-                                    user.userPassword = _reader.GetString(2);
-                                    user.userFirstName = _reader.GetString(3);
-                                    user.userLastName = _reader.GetString(4);
-                                    user.userCity = _reader.GetString(5);
-                                    user.userState = _reader.GetString(6);
-                                    user.userCountry = _reader.GetString(7);
-                                    user.userRoleID = _reader.GetInt32(8);
-                                    user.userEdited = _reader.GetInt32(9);
-                                    user.userWords = _reader.GetInt32(10);
+                                    user.userID = _reader.GetInt32(_reader.GetOrdinal("userID"));
+                                    user.userName = (string)_reader["userName"];
+                                    user.userPassword = (string)_reader["userPassword"];
+                                    user.userFirstName = (string)_reader["userFirstName"];
+                                    user.userLastName = (string)_reader["userLastName"];
+                                    user.userCity = (string)_reader["userCity"];
+                                    user.userState = (string)_reader["userState"];
+                                    user.userCountry = (string)_reader["userCountry"];
+                                    user.userRoleID = _reader.GetInt32(_reader.GetOrdinal("userRoleID"));
+                                    user.userEdited = _reader.GetInt32(_reader.GetOrdinal("userEdited"));
+                                    user.userWords = _reader.GetInt32(_reader.GetOrdinal("userWords"));
                                     // add to list that will be returned
                                     userList.Add(user);
                                 }
@@ -289,17 +289,17 @@ namespace DataAccessLayer
                         {
                             _reader.Read();
                             // create object to hold info from database
-                            user.userID = _reader.GetInt32(0);
-                            user.userName = _reader.GetString(1);
-                            user.userPassword = _reader.GetString(2);
-                            user.userFirstName = _reader.GetString(3);
-                            user.userLastName = _reader.GetString(4);
-                            user.userCity = _reader.GetString(5);
-                            user.userState = _reader.GetString(6);
-                            user.userCountry = _reader.GetString(7);
-                            user.userRoleID = _reader.GetInt32(8);
-                            user.userEdited = _reader.GetInt32(9);
-                            user.userWords = _reader.GetInt32(10);
+                            user.userID = _reader.GetInt32(_reader.GetOrdinal("userID"));
+                            user.userName = (string)_reader["userName"];
+                            user.userPassword = (string)_reader["userPassword"];
+                            user.userFirstName = (string)_reader["userFirstName"];
+                            user.userLastName = (string)_reader["userLastName"];
+                            user.userCity = (string)_reader["userCity"];
+                            user.userState = (string)_reader["userState"];
+                            user.userCountry = (string)_reader["userCountry"];
+                            user.userRoleID = _reader.GetInt32(_reader.GetOrdinal("userRoleID"));
+                            user.userEdited = _reader.GetInt32(_reader.GetOrdinal("userEdited"));
+                            user.userWords = _reader.GetInt32(_reader.GetOrdinal("userWords"));
                         }
                     }
                 }
