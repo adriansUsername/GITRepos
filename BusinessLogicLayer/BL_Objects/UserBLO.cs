@@ -18,6 +18,5 @@ namespace BusinessLogicLayer.BL_Objects
         public string userCountry { get; set; }
         public int userRoleID { get; set; }
         public int userEdited { get; set; } // count of stories this user edited
-        public int userWords { get; set; } // words per session
     }
 }

@@ -49,5 +49,44 @@ namespace DataAccessLayer
 
             return success;
         }
+
+        // OVERLOAD
+        public bool addError(Exception exception)
+        {
+            ErrorDAO error = new ErrorDAO();
+            error.errorDate = DateTime.Now;
+            error.errorType = exception.Message;
+
+            bool success = false;
+
+            try
+            {
+                // create connection to database using connection string variable
+                using (SqlConnection _connection = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand _command = new SqlCommand("sp_AddError", _connection))
+                    {
+                        // specify what type of command to use
+                        _command.CommandType = CommandType.StoredProcedure;
+                        _command.Parameters.AddWithValue("@errorDate", error.errorDate);
+                        _command.Parameters.AddWithValue("@errorType", error.errorType);
+                        // this is where the connection is opened
+                        _connection.Open();
+                        // this is where all commands will be executed
+                        _command.ExecuteNonQuery();
+
+                        // it all worked
+                        success = true;
+                    }
+                }
+            }
+            catch (Exception errorOfError)
+            {
+                // if error logging throws an error then log THAT error
+                Logger.writeError(errorOfError);
+            }
+
+            return success;
+        }
     }
 }

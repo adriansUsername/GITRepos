@@ -48,13 +48,8 @@ namespace DataAccessLayer
             }
             catch (Exception exception)
             {
-                // create error data access object
-                ErrorDAO error = new ErrorDAO();
-                error.errorDate = DateTime.Now;
-                error.errorType = exception.Message;
-
                 // use error data access to log error to the database
-                errorDA.addError(error);
+                errorDA.addError(exception);
             }
 
             return success;
@@ -87,13 +82,8 @@ namespace DataAccessLayer
             }
             catch (Exception exception)
             {
-                // create error data access object
-                ErrorDAO error = new ErrorDAO();
-                error.errorDate = DateTime.Now;
-                error.errorType = exception.Message;
-
                 // use error data access to log error to the database
-                errorDA.addError(error);
+                errorDA.addError(exception);
             }
 
             return success;
@@ -123,7 +113,6 @@ namespace DataAccessLayer
                         _command.Parameters.AddWithValue("@userRoleID", user.userRoleID);
                         _command.Parameters.AddWithValue("@userID", user.userID);
                         _command.Parameters.AddWithValue("@userEdited", user.userEdited);
-                        _command.Parameters.AddWithValue("@userWords", user.userWords);
                         // this is where the connection is opened
                         _connection.Open();
                         // this is where all commands will be executed
@@ -136,13 +125,8 @@ namespace DataAccessLayer
             }
             catch (Exception exception)
             {
-                // create error data access object
-                ErrorDAO error = new ErrorDAO();
-                error.errorDate = DateTime.Now;
-                error.errorType = exception.Message;
-
                 // use error data access to log error to the database
-                errorDA.addError(error);
+                errorDA.addError(exception);
             }
 
             return success;
@@ -183,20 +167,14 @@ namespace DataAccessLayer
                             user.userCountry = (string)_reader["userCountry"];
                             user.userRoleID = _reader.GetInt32(_reader.GetOrdinal("userRoleID"));
                             user.userEdited = _reader.GetInt32(_reader.GetOrdinal("userEdited"));
-                            user.userWords = _reader.GetInt32(_reader.GetOrdinal("userWords"));
                         }
                     }
                 }
             }
             catch (Exception exception)
             {
-                // create error data access object
-                ErrorDAO error = new ErrorDAO();
-                error.errorDate = DateTime.Now;
-                error.errorType = exception.Message;
-
                 // use error data access to log error to the database
-                errorDA.addError(error);
+                errorDA.addError(exception);
             }
 
             return user;
@@ -240,7 +218,6 @@ namespace DataAccessLayer
                                     user.userCountry = (string)_reader["userCountry"];
                                     user.userRoleID = _reader.GetInt32(_reader.GetOrdinal("userRoleID"));
                                     user.userEdited = _reader.GetInt32(_reader.GetOrdinal("userEdited"));
-                                    user.userWords = _reader.GetInt32(_reader.GetOrdinal("userWords"));
                                     // add to list that will be returned
                                     userList.Add(user);
                                 }
@@ -251,13 +228,8 @@ namespace DataAccessLayer
             }
             catch (Exception exception)
             {
-                // create error data access object
-                ErrorDAO error = new ErrorDAO();
-                error.errorDate = DateTime.Now;
-                error.errorType = exception.Message;
-
                 // use error data access to log error to the database
-                errorDA.addError(error);
+                errorDA.addError(exception);
             }
 
             return userList;
@@ -299,20 +271,14 @@ namespace DataAccessLayer
                             user.userCountry = (string)_reader["userCountry"];
                             user.userRoleID = _reader.GetInt32(_reader.GetOrdinal("userRoleID"));
                             user.userEdited = _reader.GetInt32(_reader.GetOrdinal("userEdited"));
-                            user.userWords = _reader.GetInt32(_reader.GetOrdinal("userWords"));
                         }
                     }
                 }
             }
             catch (Exception exception)
             {
-                // create error data access object
-                ErrorDAO error = new ErrorDAO();
-                error.errorDate = DateTime.Now;
-                error.errorType = exception.Message;
-
                 // use error data access to log error to the database
-                errorDA.addError(error);
+                errorDA.addError(exception);
             }
 
             return user;

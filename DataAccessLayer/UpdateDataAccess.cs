@@ -76,13 +76,8 @@ namespace DataAccessLayer
             }
             catch (Exception exception)
             {
-                // create error data access object
-                ErrorDAO error = new ErrorDAO();
-                error.errorDate = DateTime.Now;
-                error.errorType = exception.Message;
-
                 // use error data access to log error to the database
-                errorDA.addError(error);
+                errorDA.addError(exception);
             }
 
             return success;
@@ -115,13 +110,8 @@ namespace DataAccessLayer
             }
             catch (Exception exception)
             {
-                // create error data access object
-                ErrorDAO error = new ErrorDAO();
-                error.errorDate = DateTime.Now;
-                error.errorType = exception.Message;
-
                 // use error data access to log error to the database
-                errorDA.addError(error);
+                errorDA.addError(exception);
             }
 
             return success;
@@ -163,13 +153,8 @@ namespace DataAccessLayer
             }
             catch (Exception exception)
             {
-                // create error data access object
-                ErrorDAO error = new ErrorDAO();
-                error.errorDate = DateTime.Now;
-                error.errorType = exception.Message;
-
                 // use error data access to log error to the database
-                errorDA.addError(error);
+                errorDA.addError(exception);
             }
 
             return update;
@@ -218,13 +203,8 @@ namespace DataAccessLayer
             }
             catch (Exception exception)
             {
-                // create error data access object
-                ErrorDAO error = new ErrorDAO();
-                error.errorDate = DateTime.Now;
-                error.errorType = exception.Message;
-
                 // use error data access to log error to the database
-                errorDA.addError(error);
+                errorDA.addError(exception);
             }
 
             return updateList;

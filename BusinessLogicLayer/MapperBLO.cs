@@ -59,6 +59,31 @@ namespace BusinessLogicLayer
             return genreToReturn;
         }
 
+        // RATINGS
+        public static RatingsDAO map(RatingsBLO ratingsToMap)
+        {
+            RatingsDAO ratingsToReturn = new RatingsDAO();
+
+            ratingsToReturn.ratingsID = ratingsToMap.ratingsID;
+            ratingsToReturn.ratingsValue = ratingsToMap.ratingsValue;
+            ratingsToReturn.ratingsStoryID = ratingsToMap.ratingsStoryID;
+            ratingsToReturn.ratingsUserID = ratingsToMap.ratingsUserID;
+
+            return ratingsToReturn;
+        }
+
+        public static RatingsBLO map(RatingsDAO ratingsToMap)
+        {
+            RatingsBLO ratingsToReturn = new RatingsBLO();
+
+            ratingsToReturn.ratingsID = ratingsToMap.ratingsID;
+            ratingsToReturn.ratingsValue = ratingsToMap.ratingsValue;
+            ratingsToReturn.ratingsStoryID = ratingsToMap.ratingsStoryID;
+            ratingsToReturn.ratingsUserID = ratingsToMap.ratingsUserID;
+
+            return ratingsToReturn;
+        }
+
         // STORY
         public static StoryDAO map(StoryBLO storyToMap)
         {
@@ -134,7 +159,6 @@ namespace BusinessLogicLayer
             userToReturn.userCountry = userToMap.userCountry;
             userToReturn.userRoleID = userToMap.userRoleID;
             userToReturn.userEdited = userToMap.userEdited;
-            userToReturn.userWords = userToMap.userWords;
 
             return userToReturn;
         }
@@ -153,7 +177,6 @@ namespace BusinessLogicLayer
             userToReturn.userCountry = userToMap.userCountry;
             userToReturn.userRoleID = userToMap.userRoleID;
             userToReturn.userEdited = userToMap.userEdited;
-            userToReturn.userWords = userToMap.userWords;
 
             return userToReturn;
         }
@@ -197,6 +220,27 @@ namespace BusinessLogicLayer
 
             foreach (GenreDAO genre in listToMap)
                 listToReturn.Add(map(genre));
+
+            return listToReturn;
+        }
+
+        // RATINGS LIST
+        public static List<RatingsDAO> map(List<RatingsBLO> listToMap)
+        {
+            List<RatingsDAO> listToReturn = new List<RatingsDAO>();
+
+            foreach (RatingsBLO ratings in listToMap)
+                listToReturn.Add(map(ratings));
+
+            return listToReturn;
+        }
+
+        public static List<RatingsBLO> map(List<RatingsDAO> listToMap)
+        {
+            List<RatingsBLO> listToReturn = new List<RatingsBLO>();
+
+            foreach (RatingsDAO ratings in listToMap)
+                listToReturn.Add(map(ratings));
 
             return listToReturn;
         }
