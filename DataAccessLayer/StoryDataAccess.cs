@@ -16,6 +16,7 @@ namespace DataAccessLayer
         static string connectionString = ConfigurationManager.ConnectionStrings["Portfolio"].ConnectionString;
         ErrorDataAccess errorDA = new ErrorDataAccess();
 
+        // ADD STORY
         public bool addStory(StoryDAO story)
         {
             bool success = false;

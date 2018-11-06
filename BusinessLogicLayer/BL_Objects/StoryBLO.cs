@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLayer.DataObjects
+namespace BusinessLogicLayer.BL_Objects
 {
-    public class StoryDAO // Story Data Access Object
+    public class StoryBLO // Story Business Logic Object
     {
         public int storyID { get; set; }
         public string storyFileName { get; set; } // will be used to store the name of the file and file extension

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLayer.DataObjects
+namespace BusinessLogicLayer.BL_Objects
 {
-    public class UserDAO // User Data Access Object
+    public class UserBLO // Update Business Logic Object
     {
         public int userID { get; set; }
         public string userName { get; set; }

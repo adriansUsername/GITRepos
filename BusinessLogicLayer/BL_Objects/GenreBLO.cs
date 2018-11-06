@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLayer.DataObjects
+namespace BusinessLogicLayer.BL_Objects
 {
-    public class GenreDAO // Genre Data Acess Object
+    public class GenreBLO // Genre Business Logic Object
     {
         public int genreID { get; set; }
         public string genreName { get; set; }

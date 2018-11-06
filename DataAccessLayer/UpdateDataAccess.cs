@@ -63,6 +63,7 @@ namespace DataAccessLayer
                         _command.Parameters.AddWithValue("@updateContent", updateFile);
                         _command.Parameters.AddWithValue("@updateStoryID", update.updateStoryID);
                         _command.Parameters.AddWithValue("@updateFileName", update.updateFileName);
+                        _command.Parameters.AddWithValue("@updateUserID", update.updateUserID);
                         // this is where the connection is opened
                         _connection.Open();
                         // this is where all commands will be executed
@@ -124,6 +125,109 @@ namespace DataAccessLayer
             }
 
             return success;
+        }
+
+        // VIEW UPDATE IN DATABASE
+        public UpdateDAO viewOneUpdate(int updateID)
+        {
+            UpdateDAO update = new UpdateDAO();
+
+            try
+            {
+                // create connection to database using connection string variable
+                using (SqlConnection _connection = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand _command = new SqlCommand("sp_ViewOneUpdate", _connection))
+                    {
+                        // specify what type of command to use
+                        _command.CommandType = CommandType.StoredProcedure;
+                        _command.Parameters.AddWithValue("@updateID", updateID);
+                        // this is where the connection is opened
+                        _connection.Open();
+                        // this is where all commands will be executed
+                        _command.ExecuteNonQuery();
+
+                        // get the data from the database that is stored in the reader
+                        using (SqlDataReader _reader = _command.ExecuteReader())
+                        {
+                            _reader.Read();
+                            // create object to hold info from database
+                            update.updateID = updateID;
+                            update.updateDate = (DateTime)_reader["updateDate"];
+                            update.updateStoryID = (int)_reader["updateStoryID"];
+                            update.updateFileName = (string)_reader["updateFileName"];
+                            update.updateUserID = (int)_reader["updateUserID"];
+                        }
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                // create error data access object
+                ErrorDAO error = new ErrorDAO();
+                error.errorDate = DateTime.Now;
+                error.errorType = exception.Message;
+
+                // use error data access to log error to the database
+                errorDA.addError(error);
+            }
+
+            return update;
+        }
+
+        // VIEW ALL UPDATES IN DATABASE
+        public List<UpdateDAO> viewUpdates()
+        {
+            List<UpdateDAO> updateList = new List<UpdateDAO>();
+
+            try
+            {
+                // create connection to database using connection string variable
+                using (SqlConnection _connection = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand _command = new SqlCommand("sp_ViewUpdates", _connection))
+                    {
+                        // specify what type of command to use
+                        _command.CommandType = CommandType.StoredProcedure;
+                        // this is where the connection is opened
+                        _connection.Open();
+                        // this is where all commands will be executed
+                        _command.ExecuteNonQuery();
+
+                        // get the data from the database that is stored in the reader
+                        using (SqlDataReader _reader = _command.ExecuteReader())
+                        {
+                            if(_reader.HasRows)
+                            {
+                                while(_reader.Read())
+                                {
+                                    // get data from reader
+                                    UpdateDAO update = new UpdateDAO();
+                                    update.updateID = (int)_reader["updateID"];
+                                    update.updateDate = (DateTime)_reader["updateDate"];
+                                    update.updateStoryID = (int)_reader["updateStoryID"];
+                                    update.updateFileName = (string)_reader["updateFileName"];
+                                    update.updateUserID = (int)_reader["updateUserID"];
+                                    // add to list to return
+                                    updateList.Add(update);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                // create error data access object
+                ErrorDAO error = new ErrorDAO();
+                error.errorDate = DateTime.Now;
+                error.errorType = exception.Message;
+
+                // use error data access to log error to the database
+                errorDA.addError(error);
+            }
+
+            return updateList;
         }
     }
 }

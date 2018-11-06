@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLayer.DataObjects
+namespace BusinessLogicLayer.BL_Objects
 {
-    public class UpdateDAO // Update Data Access Object
+    public class UpdateBLO // Update Business Logic Object
     {
         public int updateID { get; set; }
         public DateTime updateDate { get; set; }
