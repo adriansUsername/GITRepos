@@ -17,16 +17,17 @@ namespace BusinessLogicLayer
         // updates the number of stories edited upon author approval of an update
         public bool increaseEdited(UserBLO user)
         {
-            bool success;
+            bool success = false;
 
             try
             {
                 user.userEdited++;
                 success = userDA.updateUser(MapperBLO.map(user));
             }
-            catch
+            catch (Exception error)
             {
-                success = false;
+                // Call the addError which is overloaded to accept exceptions
+                errorDA.addError(error);
             }
 
             return success;

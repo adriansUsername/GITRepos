@@ -18,7 +18,7 @@ namespace BusinessLogicLayer
         // update story's rating
         public bool getNewRating(RatingsBLO rating)
         {
-            bool success;
+            bool success = false;
 
             try
             {
@@ -47,9 +47,10 @@ namespace BusinessLogicLayer
 
                 success = storyDA.updateStory(MapperBLO.map(story));
             }
-            catch
+            catch (Exception error)
             {
-                success = false;
+                // Call the addError which is overloaded to accept exceptions
+                errorDA.addError(error);
             }
 
             return success;
