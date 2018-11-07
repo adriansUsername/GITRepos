@@ -19,5 +19,6 @@ namespace DataAccessLayer.DataObjects
         public int userRoleID { get; set; }
         public int userEdited { get; set; } // count of stories this user edited
         public DateTime userBDay { get; set; }
+        public string userDescription { get; set; }
     }
 }

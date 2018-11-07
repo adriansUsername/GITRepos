@@ -1,18 +1,16 @@
-﻿using System;
+﻿using DataAccessLayer.DataObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BusinessLogicLayer.BL_Objects;
-using DataAccessLayer.DataObjects;
+using System.Web;
 
-namespace BusinessLogicLayer
+namespace Portfolio.Models
 {
-    public static class MapperBLO // Maps between DAO and BLO
+    public static class MapperModel // Maps between Model and DAO
     {
         // MAPPERS
         // ERROR
-        public static ErrorDAO map(ErrorBLO errorToMap)
+        public static ErrorDAO map(ErrorModel errorToMap)
         {
             ErrorDAO errorToReturn = new ErrorDAO();
 
@@ -25,9 +23,9 @@ namespace BusinessLogicLayer
             return errorToReturn;
         }
 
-        public static ErrorBLO map(ErrorDAO errorToMap)
+        public static ErrorModel map(ErrorDAO errorToMap)
         {
-            ErrorBLO errorToReturn = new ErrorBLO();
+            ErrorModel errorToReturn = new ErrorModel();
 
             errorToReturn.errorID = errorToMap.errorID;
             errorToReturn.errorTrace = errorToMap.errorTrace;
@@ -39,7 +37,7 @@ namespace BusinessLogicLayer
         }
 
         // GENRE
-        public static GenreDAO map(GenreBLO genreToMap)
+        public static GenreDAO map(GenreModel genreToMap)
         {
             GenreDAO genreToReturn = new GenreDAO();
 
@@ -51,9 +49,9 @@ namespace BusinessLogicLayer
             return genreToReturn;
         }
 
-        public static GenreBLO map(GenreDAO genreToMap)
+        public static GenreModel map(GenreDAO genreToMap)
         {
-            GenreBLO genreToReturn = new GenreBLO();
+            GenreModel genreToReturn = new GenreModel();
 
             genreToReturn.genreID = genreToMap.genreID;
             genreToReturn.genreName = genreToMap.genreName;
@@ -64,7 +62,7 @@ namespace BusinessLogicLayer
         }
 
         // RATINGS
-        public static RatingsDAO map(RatingsBLO ratingsToMap)
+        public static RatingsDAO map(RatingsModel ratingsToMap)
         {
             RatingsDAO ratingsToReturn = new RatingsDAO();
 
@@ -76,9 +74,9 @@ namespace BusinessLogicLayer
             return ratingsToReturn;
         }
 
-        public static RatingsBLO map(RatingsDAO ratingsToMap)
+        public static RatingsModel map(RatingsDAO ratingsToMap)
         {
-            RatingsBLO ratingsToReturn = new RatingsBLO();
+            RatingsModel ratingsToReturn = new RatingsModel();
 
             ratingsToReturn.ratingsID = ratingsToMap.ratingsID;
             ratingsToReturn.ratingsValue = ratingsToMap.ratingsValue;
@@ -89,7 +87,7 @@ namespace BusinessLogicLayer
         }
 
         // STORY
-        public static StoryDAO map(StoryBLO storyToMap)
+        public static StoryDAO map(StoryModel storyToMap)
         {
             StoryDAO storyToReturn = new StoryDAO();
 
@@ -105,9 +103,9 @@ namespace BusinessLogicLayer
             return storyToReturn;
         }
 
-        public static StoryBLO map(StoryDAO storyToMap)
+        public static StoryModel map(StoryDAO storyToMap)
         {
-            StoryBLO storyToReturn = new StoryBLO();
+            StoryModel storyToReturn = new StoryModel();
 
             storyToReturn.storyID = storyToMap.storyID;
             storyToReturn.storyURL = storyToMap.storyURL;
@@ -122,7 +120,7 @@ namespace BusinessLogicLayer
         }
 
         // UPDATE
-        public static UpdateDAO map(UpdateBLO updateToMap)
+        public static UpdateDAO map(UpdateModel updateToMap)
         {
             UpdateDAO updateToReturn = new UpdateDAO();
 
@@ -136,9 +134,9 @@ namespace BusinessLogicLayer
             return updateToReturn;
         }
 
-        public static UpdateBLO map(UpdateDAO updateToMap)
+        public static UpdateModel map(UpdateDAO updateToMap)
         {
-            UpdateBLO updateToReturn = new UpdateBLO();
+            UpdateModel updateToReturn = new UpdateModel();
 
             updateToReturn.updateID = updateToMap.updateID;
             updateToReturn.updateDate = updateToMap.updateDate;
@@ -151,7 +149,7 @@ namespace BusinessLogicLayer
         }
 
         // USER
-        public static UserDAO map(UserBLO userToMap)
+        public static UserDAO map(UserModel userToMap)
         {
             UserDAO userToReturn = new UserDAO();
 
@@ -171,9 +169,9 @@ namespace BusinessLogicLayer
             return userToReturn;
         }
 
-        public static UserBLO map(UserDAO userToMap)
+        public static UserModel map(UserDAO userToMap)
         {
-            UserBLO userToReturn = new UserBLO();
+            UserModel userToReturn = new UserModel();
 
             userToReturn.userID = userToMap.userID;
             userToReturn.userName = userToMap.userName;
@@ -193,19 +191,19 @@ namespace BusinessLogicLayer
 
         //LIST MAPPERS
         // ERROR LIST
-        public static List<ErrorDAO> map(List<ErrorBLO> listToMap)
+        public static List<ErrorDAO> map(List<ErrorModel> listToMap)
         {
             List<ErrorDAO> listToReturn = new List<ErrorDAO>();
 
-            foreach (ErrorBLO error in listToMap)
+            foreach (ErrorModel error in listToMap)
                 listToReturn.Add(map(error));
 
             return listToReturn;
         }
 
-        public static List<ErrorBLO> map(List<ErrorDAO> listToMap)
+        public static List<ErrorModel> map(List<ErrorDAO> listToMap)
         {
-            List<ErrorBLO> listToReturn = new List<ErrorBLO>();
+            List<ErrorModel> listToReturn = new List<ErrorModel>();
 
             foreach (ErrorDAO error in listToMap)
                 listToReturn.Add(map(error));
@@ -214,19 +212,19 @@ namespace BusinessLogicLayer
         }
 
         // GENRE LIST
-        public static List<GenreDAO> map(List<GenreBLO> listToMap)
+        public static List<GenreDAO> map(List<GenreModel> listToMap)
         {
             List<GenreDAO> listToReturn = new List<GenreDAO>();
 
-            foreach (GenreBLO genre in listToMap)
+            foreach (GenreModel genre in listToMap)
                 listToReturn.Add(map(genre));
 
             return listToReturn;
         }
 
-        public static List<GenreBLO> map(List<GenreDAO> listToMap)
+        public static List<GenreModel> map(List<GenreDAO> listToMap)
         {
-            List<GenreBLO> listToReturn = new List<GenreBLO>();
+            List<GenreModel> listToReturn = new List<GenreModel>();
 
             foreach (GenreDAO genre in listToMap)
                 listToReturn.Add(map(genre));
@@ -235,19 +233,19 @@ namespace BusinessLogicLayer
         }
 
         // RATINGS LIST
-        public static List<RatingsDAO> map(List<RatingsBLO> listToMap)
+        public static List<RatingsDAO> map(List<RatingsModel> listToMap)
         {
             List<RatingsDAO> listToReturn = new List<RatingsDAO>();
 
-            foreach (RatingsBLO ratings in listToMap)
+            foreach (RatingsModel ratings in listToMap)
                 listToReturn.Add(map(ratings));
 
             return listToReturn;
         }
 
-        public static List<RatingsBLO> map(List<RatingsDAO> listToMap)
+        public static List<RatingsModel> map(List<RatingsDAO> listToMap)
         {
-            List<RatingsBLO> listToReturn = new List<RatingsBLO>();
+            List<RatingsModel> listToReturn = new List<RatingsModel>();
 
             foreach (RatingsDAO ratings in listToMap)
                 listToReturn.Add(map(ratings));
@@ -256,19 +254,19 @@ namespace BusinessLogicLayer
         }
 
         // STORY LIST
-        public static List<StoryDAO> map(List<StoryBLO> listToMap)
+        public static List<StoryDAO> map(List<StoryModel> listToMap)
         {
             List<StoryDAO> listToReturn = new List<StoryDAO>();
 
-            foreach (StoryBLO story in listToMap)
+            foreach (StoryModel story in listToMap)
                 listToReturn.Add(map(story));
 
             return listToReturn;
         }
 
-        public static List<StoryBLO> map(List<StoryDAO> listToMap)
+        public static List<StoryModel> map(List<StoryDAO> listToMap)
         {
-            List<StoryBLO> listToReturn = new List<StoryBLO>();
+            List<StoryModel> listToReturn = new List<StoryModel>();
 
             foreach (StoryDAO story in listToMap)
                 listToReturn.Add(map(story));
@@ -277,19 +275,19 @@ namespace BusinessLogicLayer
         }
 
         // UPDATE LIST
-        public static List<UpdateDAO> map(List<UpdateBLO> listToMap)
+        public static List<UpdateDAO> map(List<UpdateModel> listToMap)
         {
             List<UpdateDAO> listToReturn = new List<UpdateDAO>();
 
-            foreach (UpdateBLO update in listToMap)
+            foreach (UpdateModel update in listToMap)
                 listToReturn.Add(map(update));
 
             return listToReturn;
         }
 
-        public static List<UpdateBLO> map(List<UpdateDAO> listToMap)
+        public static List<UpdateModel> map(List<UpdateDAO> listToMap)
         {
-            List<UpdateBLO> listToReturn = new List<UpdateBLO>();
+            List<UpdateModel> listToReturn = new List<UpdateModel>();
 
             foreach (UpdateDAO update in listToMap)
                 listToReturn.Add(map(update));
@@ -298,19 +296,19 @@ namespace BusinessLogicLayer
         }
 
         // USER LIST
-        public static List<UserDAO> map(List<UserBLO> listToMap)
+        public static List<UserDAO> map(List<UserModel> listToMap)
         {
             List<UserDAO> listToReturn = new List<UserDAO>();
 
-            foreach (UserBLO user in listToMap)
+            foreach (UserModel user in listToMap)
                 listToReturn.Add(map(user));
 
             return listToReturn;
         }
 
-        public static List<UserBLO> map(List<UserDAO> listToMap)
+        public static List<UserModel> map(List<UserDAO> listToMap)
         {
-            List<UserBLO> listToReturn = new List<UserBLO>();
+            List<UserModel> listToReturn = new List<UserModel>();
 
             foreach (UserDAO user in listToMap)
                 listToReturn.Add(map(user));

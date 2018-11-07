@@ -1,0 +1,32 @@
+﻿@model Portfolio.Models.UserViewModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Login", "User", FormMethod.Post))
+{
+    <div class="container">
+
+        <div class="form-group">
+
+            @Html.LabelFor(m => m.singleUser.UserName)
+            @Html.EditorFor(m => m.singleUser.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.singleUser.UserName)
+
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(m => m.singleUser.UserPassword)
+            @Html.PasswordFor(m => m.singleUser.UserPassword, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.singleUser.UserPassword)
+
+        </div>
+
+    </div>
+
+    <input type="submit" class="btn-success" value="Login" />
+}

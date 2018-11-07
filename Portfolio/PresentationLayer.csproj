@@ -148,9 +148,22 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ErrorModel.cs" />
+    <Compile Include="Models\GenreModel.cs" />
+    <Compile Include="Models\GenreViewModel.cs" />
+    <Compile Include="Models\MapperModel.cs" />
+    <Compile Include="Models\RatingsModel.cs" />
+    <Compile Include="Models\RatingsViewModel.cs" />
+    <Compile Include="Models\StoryModel.cs" />
+    <Compile Include="Models\StoryViewModel.cs" />
+    <Compile Include="Models\UpdateModel.cs" />
+    <Compile Include="Models\UpdateViewModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -192,11 +205,10 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
-    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -212,17 +224,9 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BusinessLogicLayer\BusinessLogicLayer.csproj">
-      <Project>{a3262ef6-3ddc-4b85-aa0e-ed4a3ab7d56f}</Project>
-      <Name>BusinessLogicLayer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
       <Project>{694e7d6f-0914-415c-9679-9c3a9d41bfd8}</Project>
       <Name>DataAccessLayer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Utility\Utility.csproj">
-      <Project>{afb2c7ca-ac60-4e8b-aa96-4cfa98b78979}</Project>
-      <Name>Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
