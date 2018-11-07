@@ -12,6 +12,7 @@ namespace BusinessLogicLayer
     {
         // To access the database
         UserDataAccess userDA = new UserDataAccess();
+        StoryDataAccess storyDA = new StoryDataAccess();
         ErrorDataAccess errorDA = new ErrorDataAccess();
 
         // updates the number of stories edited upon author approval of an update
@@ -31,6 +32,37 @@ namespace BusinessLogicLayer
             }
 
             return success;
+        }
+
+        // check if user is old enough to view/edit a story
+        public bool checkAge(UserBLO user, StoryBLO story)
+        {
+            bool oldEnough = false;
+
+            try
+            {
+                int year = DateTime.Now.Year;
+                // get the age limit for a story
+                int ageLimit = storyDA.minAge(MapperBLO.map(story));
+
+                // move backwards to find the latest birth year needed to meet requirements
+                for (int i = ageLimit; i > 0; i++)
+                    year--;
+
+                // get the lastest birthday needed using year
+                DateTime birthdayLimit = new DateTime(year, DateTime.Now.Month, DateTime.Now.Day);
+
+                // check if user is old enough
+                if (DateTime.Compare(user.userBDay, birthdayLimit) <= 0)
+                    oldEnough = true;
+            }
+            catch (Exception error)
+            {
+                // Call the addError which is overloaded to accept exceptions
+                errorDA.addError(error);
+            }
+
+            return oldEnough;
         }
     }
 }

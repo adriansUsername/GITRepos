@@ -36,6 +36,7 @@ namespace DataAccessLayer
                         _command.Parameters.AddWithValue("@userCity", user.userCity);
                         _command.Parameters.AddWithValue("@userState", user.userState);
                         _command.Parameters.AddWithValue("@userCountry", user.userCountry);
+                        _command.Parameters.AddWithValue("@userBDay", user.userBDay);
                         // this is where the connection is opened
                         _connection.Open();
                         // this is where all commands will be executed
@@ -113,6 +114,7 @@ namespace DataAccessLayer
                         _command.Parameters.AddWithValue("@userRoleID", user.userRoleID);
                         _command.Parameters.AddWithValue("@userID", user.userID);
                         _command.Parameters.AddWithValue("@userEdited", user.userEdited);
+                        _command.Parameters.AddWithValue("@userBDay", user.userBDay);
                         // this is where the connection is opened
                         _connection.Open();
                         // this is where all commands will be executed
@@ -167,6 +169,7 @@ namespace DataAccessLayer
                             user.userCountry = (string)_reader["userCountry"];
                             user.userRoleID = _reader.GetInt32(_reader.GetOrdinal("userRoleID"));
                             user.userEdited = _reader.GetInt32(_reader.GetOrdinal("userEdited"));
+                            user.userBDay = (DateTime)_reader["userBDay"];
                         }
                     }
                 }
@@ -218,6 +221,7 @@ namespace DataAccessLayer
                                     user.userCountry = (string)_reader["userCountry"];
                                     user.userRoleID = _reader.GetInt32(_reader.GetOrdinal("userRoleID"));
                                     user.userEdited = _reader.GetInt32(_reader.GetOrdinal("userEdited"));
+                                    user.userBDay = (DateTime)_reader["userBDay"];
                                     // add to list that will be returned
                                     userList.Add(user);
                                 }
@@ -271,6 +275,7 @@ namespace DataAccessLayer
                             user.userCountry = (string)_reader["userCountry"];
                             user.userRoleID = _reader.GetInt32(_reader.GetOrdinal("userRoleID"));
                             user.userEdited = _reader.GetInt32(_reader.GetOrdinal("userEdited"));
+                            user.userBDay = (DateTime)_reader["userBDay"];
                         }
                     }
                 }

@@ -165,6 +165,7 @@ namespace BusinessLogicLayer
             userToReturn.userCountry = userToMap.userCountry;
             userToReturn.userRoleID = userToMap.userRoleID;
             userToReturn.userEdited = userToMap.userEdited;
+            userToReturn.userBDay = userToMap.userBDay;
 
             return userToReturn;
         }
@@ -183,6 +184,7 @@ namespace BusinessLogicLayer
             userToReturn.userCountry = userToMap.userCountry;
             userToReturn.userRoleID = userToMap.userRoleID;
             userToReturn.userEdited = userToMap.userEdited;
+            userToReturn.userBDay = userToMap.userBDay;
 
             return userToReturn;
         }

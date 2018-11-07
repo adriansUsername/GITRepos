@@ -23,8 +23,8 @@ namespace DataAccessLayer
 
             try
             {
-                    // create connection to database using connection string variable
-                    using (SqlConnection _connection = new SqlConnection(connectionString))
+                // create connection to database using connection string variable
+                using (SqlConnection _connection = new SqlConnection(connectionString))
                 {
                     using (SqlCommand _command = new SqlCommand("sp_AddStory", _connection))
                     {
@@ -224,6 +224,44 @@ namespace DataAccessLayer
             }
 
             return storyList;
+        }
+
+        // Get the youngest age a user can be to view/edit a story
+        public int minAge(StoryDAO story)
+        {
+            int minimumAge = 0;
+
+            try
+            {
+                // create connection to database using connection string variable
+                using (SqlConnection _connection = new SqlConnection(connectionString))
+                {
+                    // open the connection to the database
+                    _connection.Open();
+                    // create the sql code to run
+                    string sqlCommand = "SELECT restrictionAge FROM [Restriction] WHERE restrictionID = @storyRestriction";
+
+                    using (SqlCommand _command = new SqlCommand(sqlCommand, _connection))
+                    {
+                        _command.Parameters.AddWithValue("@storyRestriction", story.storyRestrictionID);
+                        // run the command
+                        _command.ExecuteNonQuery();
+
+                        // get the data from the select
+                        using (SqlDataReader _reader = _command.ExecuteReader())
+                        {
+                            minimumAge = (int)_reader["restrictionAge"];
+                        }
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                // use error data access to log error to the database
+                errorDA.addError(exception);
+            }
+
+            return minimumAge;
         }
     }
 }
