@@ -90,7 +90,7 @@ namespace BusinessLogicLayer
             StoryDAO storyToReturn = new StoryDAO();
 
             storyToReturn.storyID = storyToMap.storyID;
-            storyToReturn.storyFileName = storyToMap.storyFileName;
+            storyToReturn.storyURL = storyToMap.storyURL;
             storyToReturn.storyRating = storyToMap.storyRating;
             storyToReturn.storyRestrictionID = storyToMap.storyRestrictionID;
             storyToReturn.storyUserID = storyToMap.storyUserID;
@@ -106,7 +106,7 @@ namespace BusinessLogicLayer
             StoryBLO storyToReturn = new StoryBLO();
 
             storyToReturn.storyID = storyToMap.storyID;
-            storyToReturn.storyFileName = storyToMap.storyFileName;
+            storyToReturn.storyURL = storyToMap.storyURL;
             storyToReturn.storyRating = storyToMap.storyRating;
             storyToReturn.storyRestrictionID = storyToMap.storyRestrictionID;
             storyToReturn.storyUserID = storyToMap.storyUserID;
@@ -125,8 +125,9 @@ namespace BusinessLogicLayer
             updateToReturn.updateID = updateToMap.updateID;
             updateToReturn.updateDate = updateToMap.updateDate;
             updateToReturn.updateStoryID = updateToMap.updateStoryID;
-            updateToReturn.updateFileName = updateToMap.updateFileName;
+            updateToReturn.updateURL = updateToMap.updateURL;
             updateToReturn.updateUserID = updateToMap.updateUserID;
+            updateToReturn.updateApproved = updateToMap.updateApproved;
 
             return updateToReturn;
         }
@@ -138,8 +139,9 @@ namespace BusinessLogicLayer
             updateToReturn.updateID = updateToMap.updateID;
             updateToReturn.updateDate = updateToMap.updateDate;
             updateToReturn.updateStoryID = updateToMap.updateStoryID;
-            updateToReturn.updateFileName = updateToMap.updateFileName;
+            updateToReturn.updateURL = updateToMap.updateURL;
             updateToReturn.updateUserID = updateToMap.updateUserID;
+            updateToReturn.updateApproved = updateToMap.updateApproved;
 
             return updateToReturn;
         }

@@ -9,7 +9,7 @@ namespace BusinessLogicLayer.BL_Objects
     public class StoryBLO // Story Business Logic Object
     {
         public int storyID { get; set; }
-        public string storyFileName { get; set; } // will be used to store the name of the file and file extension
+        public string storyURL { get; set; }
         public int storyRating { get; set; }
         public int storyRestrictionID { get; set; }
         public int storyUserID { get; set; }

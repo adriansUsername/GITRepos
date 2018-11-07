@@ -15,7 +15,7 @@ namespace BusinessLogicLayer
         UserDataAccess userDA = new UserDataAccess();
         ErrorDataAccess errorDA = new ErrorDataAccess();
 
-        // updates the number of stories edited upon submit
+        // updates the number of stories edited upon author approval of an update
         public bool increaseEdited(UserBLO user)
         {
             bool success;

@@ -11,7 +11,8 @@ namespace DataAccessLayer.DataObjects
         public int updateID { get; set; }
         public DateTime updateDate { get; set; }
         public int updateStoryID { get; set; }
-        public string updateFileName { get; set; } // will be used to store the name of the file and file extension
+        public string updateURL { get; set; }
         public int updateUserID { get; set; }
+        public bool updateApproved { get; set; }
     }
 }

@@ -21,37 +21,8 @@ namespace DataAccessLayer
         {
             bool success = false;
 
-            byte[] storyFile;
-
             try
             {
-                // create the story's file
-                story.storyFileName = story.storyTitle.Replace(" ", "_") + ".txt";
-                File.CreateText("C:\\Temp\\PFolder\\PortfolioFS\\Files\\" + story.storyFileName);
-
-                // create connection to run sql commands made in c#
-                using (SqlConnection _connection = new SqlConnection(connectionString))
-                {
-                    // create command to take in the sql code
-                    using (SqlCommand _command = _connection.CreateCommand())
-                    {
-                        // create command to convert file into type that can be passed to filestream column in story table
-                        _command.CommandText = "SELECT * FROM OPENROWSET(BULK C:\\Temp\\PFolder\\PortfolioFS\\Files\\" +
-                            story.storyFileName + ", SINGLE_BLOB) AS File)";
-                        _command.CommandType = CommandType.Text;
-
-                        // open connection
-                        _command.Connection = _connection;
-                        _connection.Open();
-
-                        // create reader to get the conversion result
-                        using (SqlDataReader _reader = _command.ExecuteReader())
-                        {
-                            storyFile = (byte[])_reader["File"];
-                        }
-                    }
-                }
-
                     // create connection to database using connection string variable
                     using (SqlConnection _connection = new SqlConnection(connectionString))
                 {
@@ -59,12 +30,11 @@ namespace DataAccessLayer
                     {
                         // specify what type of command to use
                         _command.CommandType = CommandType.StoredProcedure;
-                        _command.Parameters.AddWithValue("@storyFile", storyFile);
                         _command.Parameters.AddWithValue("@storyRestrictionID", story.storyRestrictionID);
                         _command.Parameters.AddWithValue("@storyUserID", story.storyUserID);
                         _command.Parameters.AddWithValue("@storyGenreID", story.storyGenreID);
                         _command.Parameters.AddWithValue("@storyTitle", story.storyTitle);
-                        _command.Parameters.AddWithValue("@storyFileName", story.storyFileName);
+                        _command.Parameters.AddWithValue("@storyURL", story.storyURL);
                         // this is where the connection is opened
                         _connection.Open();
                         // this is where all commands will be executed
@@ -140,7 +110,6 @@ namespace DataAccessLayer
                         _command.Parameters.AddWithValue("@storyGenreID", story.storyGenreID);
                         _command.Parameters.AddWithValue("@storyEditorID", story.storyEditorID);
                         _command.Parameters.AddWithValue("@storyTitle", story.storyTitle);
-                        _command.Parameters.AddWithValue("@storyFileName", story.storyFileName);
                         // this is where the connection is opened
                         _connection.Open();
                         // this is where all commands will be executed
@@ -191,7 +160,7 @@ namespace DataAccessLayer
                             story.storyUserID = (int)_reader["storyUserID"];
                             story.storyGenreID = (int)_reader["storyGenreID"];
                             story.storyTitle = (string)_reader["storyTitle"];
-                            story.storyFileName = (string)_reader["storyFileName"];
+                            story.storyURL = (string)_reader["storyURL"];
                             story.storyEditorID = (int)_reader["storyEditorID"];
                         }
                     }
@@ -240,7 +209,7 @@ namespace DataAccessLayer
                                     story.storyUserID = (int)_reader["storyUserID"];
                                     story.storyGenreID = (int)_reader["storyGenreID"];
                                     story.storyTitle = (string)_reader["storyTitle"];
-                                    story.storyFileName = (string)_reader["storyFileName"];
+                                    story.storyURL = (string)_reader["storyURL"];
                                     story.storyEditorID = (int)_reader["storyEditorID"];
                                 }
                             }
