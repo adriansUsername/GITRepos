@@ -70,5 +70,11 @@ namespace Portfolio.Controllers
 
             return result;
         }
+
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return View();
+        }
     }
 }

@@ -1,0 +1,90 @@
+﻿@model Portfolio.Models.UserViewModel
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Register</h2>
+
+@using (Html.BeginForm("Register", "User", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+
+        <div class="form-group">
+
+            @Html.LabelFor(m => m.singleUser.userName)
+            <br />
+            @Html.EditorFor(m => m.singleUser.userName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.singleUser.userName)
+
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(m => m.singleUser.userPassword)
+            <br />
+            @Html.EditorFor(m => m.singleUser.userPassword, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.singleUser.userPassword)
+
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(m => m.singleUser.userFirstName)
+            <br />
+            @Html.EditorFor(m => m.singleUser.userFirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.singleUser.userFirstName)
+
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(m => m.singleUser.userLastName)
+            <br />
+            @Html.EditorFor(m => m.singleUser.userLastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.singleUser.userLastName)
+
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(m => m.singleUser.userCity)
+            <br />
+            @Html.EditorFor(m => m.singleUser.userCity, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.singleUser.userCity)
+
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(m => m.singleUser.userState)
+            <br />
+            @Html.EditorFor(m => m.singleUser.userState, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.singleUser.userState)
+
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(m => m.singleUser.userCountry)
+            <br />
+            @Html.EditorFor(m => m.singleUser.userCountry, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.singleUser.userCountry)
+
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(m => m.singleUser.userBDay)
+            <br />
+            @Html.EditorFor(m => m.singleUser.userBDay, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.singleUser.userBDay)
+
+        </div>
+
+    </div>
+
+    <input type="submit" class="btn-success" value="Register" />
+}
