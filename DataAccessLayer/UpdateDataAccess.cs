@@ -32,7 +32,7 @@ namespace DataAccessLayer
                         _command.CommandType = CommandType.StoredProcedure;
                         _command.Parameters.AddWithValue("@updateDate", update.updateDate);
                         _command.Parameters.AddWithValue("@updateStoryID", update.updateStoryID);
-                        _command.Parameters.AddWithValue("@updateURL", update.updateURL);
+                        _command.Parameters.AddWithValue("@updateText", update.updateText);
                         _command.Parameters.AddWithValue("@updateUserID", update.updateUserID);
                         // this is where the connection is opened
                         _connection.Open();
@@ -70,7 +70,7 @@ namespace DataAccessLayer
                         _command.Parameters.AddWithValue("@updateID", update.updateID);
                         _command.Parameters.AddWithValue("@updateDate", update.updateDate);
                         _command.Parameters.AddWithValue("@updateStoryID", update.updateStoryID);
-                        _command.Parameters.AddWithValue("@updateURL", update.updateURL);
+                        _command.Parameters.AddWithValue("@updateText", update.updateText);
                         _command.Parameters.AddWithValue("@updateUserID", update.updateUserID);
                         // this is where the connection is opened
                         _connection.Open();
@@ -153,7 +153,7 @@ namespace DataAccessLayer
                             update.updateID = updateID;
                             update.updateDate = (DateTime)_reader["updateDate"];
                             update.updateStoryID = (int)_reader["updateStoryID"];
-                            update.updateURL = (string)_reader["updateURL"];
+                            update.updateText = (string)_reader["updateText"];
                             update.updateUserID = (int)_reader["updateUserID"];
                             update.updateApproved = (bool)_reader["updateApproved"];
                         }
@@ -200,7 +200,7 @@ namespace DataAccessLayer
                                     update.updateID = (int)_reader["updateID"];
                                     update.updateDate = (DateTime)_reader["updateDate"];
                                     update.updateStoryID = (int)_reader["updateStoryID"];
-                                    update.updateURL = (string)_reader["updateURL"];
+                                    update.updateText = (string)_reader["updateText"];
                                     update.updateUserID = (int)_reader["updateUserID"];
                                     update.updateApproved = (bool)_reader["updateApproved"];
                                     // add to list to return

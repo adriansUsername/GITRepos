@@ -125,7 +125,7 @@ namespace BusinessLogicLayer
             updateToReturn.updateID = updateToMap.updateID;
             updateToReturn.updateDate = updateToMap.updateDate;
             updateToReturn.updateStoryID = updateToMap.updateStoryID;
-            updateToReturn.updateURL = updateToMap.updateURL;
+            updateToReturn.updateText = updateToMap.updateText;
             updateToReturn.updateUserID = updateToMap.updateUserID;
             updateToReturn.updateApproved = updateToMap.updateApproved;
 
@@ -139,7 +139,7 @@ namespace BusinessLogicLayer
             updateToReturn.updateID = updateToMap.updateID;
             updateToReturn.updateDate = updateToMap.updateDate;
             updateToReturn.updateStoryID = updateToMap.updateStoryID;
-            updateToReturn.updateURL = updateToMap.updateURL;
+            updateToReturn.updateText = updateToMap.updateText;
             updateToReturn.updateUserID = updateToMap.updateUserID;
             updateToReturn.updateApproved = updateToMap.updateApproved;
 
