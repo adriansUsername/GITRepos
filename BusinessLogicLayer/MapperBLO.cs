@@ -17,7 +17,9 @@ namespace BusinessLogicLayer
             ErrorDAO errorToReturn = new ErrorDAO();
 
             errorToReturn.errorID = errorToMap.errorID;
-            errorToReturn.errorType = errorToMap.errorType;
+            errorToReturn.errorTrace = errorToMap.errorTrace;
+            errorToReturn.errorMessage = errorToMap.errorMessage;
+            errorToReturn.errorSite = errorToMap.errorSite;
             errorToReturn.errorDate = errorToMap.errorDate;
 
             return errorToReturn;
@@ -28,7 +30,9 @@ namespace BusinessLogicLayer
             ErrorBLO errorToReturn = new ErrorBLO();
 
             errorToReturn.errorID = errorToMap.errorID;
-            errorToReturn.errorType = errorToMap.errorType;
+            errorToReturn.errorTrace = errorToMap.errorTrace;
+            errorToReturn.errorMessage = errorToMap.errorMessage;
+            errorToReturn.errorSite = errorToMap.errorSite;
             errorToReturn.errorDate = errorToMap.errorDate;
 
             return errorToReturn;

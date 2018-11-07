@@ -10,6 +10,8 @@ namespace DataAccessLayer.DataObjects
     {
         public int errorID { get;set; }
         public DateTime errorDate { get; set; }
-        public string errorType { get; set; } // Holds the exception message
+        public string errorMessage { get; set; }
+        public string errorTrace { get; set; }
+        public string errorSite { get; set; }
     }
 }
