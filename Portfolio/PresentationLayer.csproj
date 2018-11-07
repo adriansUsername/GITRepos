@@ -158,6 +158,10 @@
     <Compile Include="Models\MapperModel.cs" />
     <Compile Include="Models\RatingsModel.cs" />
     <Compile Include="Models\RatingsViewModel.cs" />
+    <Compile Include="Models\RestrictionModel.cs" />
+    <Compile Include="Models\RestrictionViewModel.cs" />
+    <Compile Include="Models\RoleModel.cs" />
+    <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\StoryModel.cs" />
     <Compile Include="Models\StoryViewModel.cs" />
     <Compile Include="Models\UpdateModel.cs" />

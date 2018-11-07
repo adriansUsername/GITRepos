@@ -66,6 +66,8 @@
     <Compile Include="DataObjects\ErrorDAO.cs" />
     <Compile Include="DataObjects\GenreDAO.cs" />
     <Compile Include="DataObjects\RatingsDAO.cs" />
+    <Compile Include="DataObjects\RestrictionDAO.cs" />
+    <Compile Include="DataObjects\RoleDAO.cs" />
     <Compile Include="DataObjects\StoryDAO.cs" />
     <Compile Include="DataObjects\UpdateDAO.cs" />
     <Compile Include="DataObjects\UserDAO.cs" />
@@ -73,6 +75,8 @@
     <Compile Include="GenreDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RatingsDataAccess.cs" />
+    <Compile Include="RestrictionDataAccess.cs" />
+    <Compile Include="RoleDataAccess.cs" />
     <Compile Include="StoryDataAccess.cs" />
     <Compile Include="UpdateDataAccess.cs" />
     <Compile Include="UserDataAccess.cs" />

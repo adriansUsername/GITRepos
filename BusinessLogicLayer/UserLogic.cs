@@ -14,6 +14,7 @@ namespace BusinessLogicLayer
         UserDataAccess userDA = new UserDataAccess();
         StoryDataAccess storyDA = new StoryDataAccess();
         ErrorDataAccess errorDA = new ErrorDataAccess();
+        RestrictionDataAccess restrictionDA = new RestrictionDataAccess();
 
         // updates the number of stories edited upon author approval of an update
         public bool increaseEdited(UserBLO user)
@@ -42,8 +43,16 @@ namespace BusinessLogicLayer
             try
             {
                 int year = DateTime.Now.Year;
+
+                // get the restrictions
+                List<RestrictionBLO> restrictionList = MapperBLO.map(restrictionDA.viewRestrictions());
                 // get the age limit for a story
-                int ageLimit = storyDA.minAge(MapperBLO.map(story));
+                int ageLimit = 0;
+                foreach(RestrictionBLO r in restrictionList)
+                {
+                    if (r.restrictionID == story.storyRestrictionID)
+                        ageLimit = r.restrictionAge;
+                }
 
                 // move backwards to find the latest birth year needed to meet requirements
                 for (int i = ageLimit; i > 0; i++)

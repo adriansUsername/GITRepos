@@ -88,6 +88,52 @@ namespace BusinessLogicLayer
             return ratingsToReturn;
         }
 
+        // RESTRICTION
+        public static RestrictionDAO map(RestrictionBLO restrictionToMap)
+        {
+            RestrictionDAO restrictionToReturn = new RestrictionDAO();
+
+            restrictionToReturn.restrictionID = restrictionToMap.restrictionID;
+            restrictionToReturn.restrictionAge = restrictionToMap.restrictionAge;
+            restrictionToReturn.restrictionName = restrictionToMap.restrictionName;
+
+            return restrictionToReturn;
+        }
+
+        public static RestrictionBLO map(RestrictionDAO restrictionToMap)
+        {
+            RestrictionBLO restrictionToReturn = new RestrictionBLO();
+
+            restrictionToReturn.restrictionID = restrictionToMap.restrictionID;
+            restrictionToReturn.restrictionAge = restrictionToMap.restrictionAge;
+            restrictionToReturn.restrictionName = restrictionToMap.restrictionName;
+
+            return restrictionToReturn;
+        }
+
+        // ROLE
+        public static RoleDAO map(RoleBLO roleToMap)
+        {
+            RoleDAO roleToReturn = new RoleDAO();
+
+            roleToReturn.roleID = roleToMap.roleID;
+            roleToReturn.roleName = roleToMap.roleName;
+            roleToReturn.roleDescription = roleToMap.roleDescription;
+
+            return roleToReturn;
+        }
+
+        public static RoleBLO map(RoleDAO roleToMap)
+        {
+            RoleBLO roleToReturn = new RoleBLO();
+
+            roleToReturn.roleID = roleToMap.roleID;
+            roleToReturn.roleName = roleToMap.roleName;
+            roleToReturn.roleDescription = roleToMap.roleDescription;
+
+            return roleToReturn;
+        }
+
         // STORY
         public static StoryDAO map(StoryBLO storyToMap)
         {
@@ -250,6 +296,48 @@ namespace BusinessLogicLayer
             List<RatingsBLO> listToReturn = new List<RatingsBLO>();
 
             foreach (RatingsDAO ratings in listToMap)
+                listToReturn.Add(map(ratings));
+
+            return listToReturn;
+        }
+
+        // RESTRICTIONS LIST
+        public static List<RestrictionDAO> map(List<RestrictionBLO> listToMap)
+        {
+            List<RestrictionDAO> listToReturn = new List<RestrictionDAO>();
+
+            foreach (RestrictionBLO ratings in listToMap)
+                listToReturn.Add(map(ratings));
+
+            return listToReturn;
+        }
+
+        public static List<RestrictionBLO> map(List<RestrictionDAO> listToMap)
+        {
+            List<RestrictionBLO> listToReturn = new List<RestrictionBLO>();
+
+            foreach (RestrictionDAO ratings in listToMap)
+                listToReturn.Add(map(ratings));
+
+            return listToReturn;
+        }
+
+        // ROLES LIST
+        public static List<RoleDAO> map(List<RoleBLO> listToMap)
+        {
+            List<RoleDAO> listToReturn = new List<RoleDAO>();
+
+            foreach (RoleBLO ratings in listToMap)
+                listToReturn.Add(map(ratings));
+
+            return listToReturn;
+        }
+
+        public static List<RoleBLO> map(List<RoleDAO> listToMap)
+        {
+            List<RoleBLO> listToReturn = new List<RoleBLO>();
+
+            foreach (RoleDAO ratings in listToMap)
                 listToReturn.Add(map(ratings));
 
             return listToReturn;
