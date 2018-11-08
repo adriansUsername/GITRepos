@@ -145,6 +145,7 @@ namespace Portfolio.Models
             storyToReturn.storyGenreID = storyToMap.storyGenreID;
             storyToReturn.storyTitle = storyToMap.storyTitle;
             storyToReturn.storyEditorID = storyToMap.storyEditorID;
+            storyToReturn.storyPublic = storyToMap.storyPublic;
 
             return storyToReturn;
         }
@@ -161,6 +162,7 @@ namespace Portfolio.Models
             storyToReturn.storyGenreID = storyToMap.storyGenreID;
             storyToReturn.storyTitle = storyToMap.storyTitle;
             storyToReturn.storyEditorID = storyToMap.storyEditorID;
+            storyToReturn.storyPublic = storyToMap.storyPublic;
 
             return storyToReturn;
         }

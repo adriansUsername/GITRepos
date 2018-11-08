@@ -16,7 +16,7 @@ namespace DataAccessLayer
         static string connectionString = ConfigurationManager.ConnectionStrings["Portfolio"].ConnectionString;
         ErrorDataAccess errorDA = new ErrorDataAccess();
 
-        // ADD UPDATE
+        // ADD AN UPDATE
         public bool addAnUpdate(UpdateDAO update)
         {
             bool success = false;
@@ -91,7 +91,7 @@ namespace DataAccessLayer
             return success;
         }
 
-        // DELETE UPDATE
+        // DELETE AN UPDATE
         public bool deleteAnUpdate(int updateID)
         {
             bool success = false;
@@ -125,7 +125,7 @@ namespace DataAccessLayer
             return success;
         }
 
-        // VIEW UPDATE IN DATABASE
+        // VIEW AN UPDATE IN DATABASE
         public UpdateDAO viewOneUpdate(int updateID)
         {
             UpdateDAO update = new UpdateDAO();

@@ -15,7 +15,7 @@ namespace DataAccessLayer
         static string connectionString = ConfigurationManager.ConnectionStrings["Portfolio"].ConnectionString;
         ErrorDataAccess errorDA = new ErrorDataAccess();
 
-        // VIEW ALL ROLES IN DATABASE
+        // VIEW ALL ROLES
         public List<RoleDAO> viewRoles()
         {
             List<RoleDAO> roleList = new List<RoleDAO>();

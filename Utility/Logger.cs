@@ -25,7 +25,7 @@ namespace Utility
             message += "------------------------------------------------------";
 
             // Create a streamwriter to add the message string to a text file
-            using (StreamWriter _writer = new StreamWriter("C:\\Users\\Onshore\\source\\repos\\Portfolio\\Portfolio\\log.txt", true))
+            using (StreamWriter _writer = new StreamWriter("..\\log.txt", true))
             {
                 _writer.WriteLine(message);
             }

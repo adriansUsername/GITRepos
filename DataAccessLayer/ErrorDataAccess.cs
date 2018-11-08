@@ -15,7 +15,7 @@ namespace DataAccessLayer
     {
         static string connectionString = ConfigurationManager.ConnectionStrings["Portfolio"].ConnectionString;
 
-        // Logs error to the database
+        // LOG ERROR TO DATABASE
         public bool addError(ErrorDAO error)
         {
             bool success = false;
@@ -52,7 +52,7 @@ namespace DataAccessLayer
             return success;
         }
 
-        // OVERLOAD
+        // OVERLOAD addError WITH EXCEPTION
         public bool addError(Exception exception)
         {
             ErrorDAO error = new ErrorDAO();

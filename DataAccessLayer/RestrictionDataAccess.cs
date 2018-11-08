@@ -15,7 +15,7 @@ namespace DataAccessLayer
         static string connectionString = ConfigurationManager.ConnectionStrings["Portfolio"].ConnectionString;
         ErrorDataAccess errorDA = new ErrorDataAccess();
 
-        // VIEW ALL RESTRICTIONS IN DATABASE
+        // VIEW ALL RESTRICTIONS
         public List<RestrictionDAO> viewRestrictions()
         {
             List<RestrictionDAO> restrictionList = new List<RestrictionDAO>();

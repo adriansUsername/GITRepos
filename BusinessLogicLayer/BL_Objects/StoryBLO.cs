@@ -16,5 +16,6 @@ namespace BusinessLogicLayer.BL_Objects
         public int storyGenreID { get; set; }
         public string storyTitle { get; set; }
         public int storyEditorID { get; set; }
+        public bool storyPublic { get; set; }
     }
 }

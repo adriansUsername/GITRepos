@@ -35,6 +35,7 @@ namespace DataAccessLayer
                         _command.Parameters.AddWithValue("@storyGenreID", story.storyGenreID);
                         _command.Parameters.AddWithValue("@storyTitle", story.storyTitle);
                         _command.Parameters.AddWithValue("@storyURL", story.storyURL);
+                        _command.Parameters.AddWithValue("@storyPublic", story.storyPublic);
                         // this is where the connection is opened
                         _connection.Open();
                         // this is where all commands will be executed
@@ -110,6 +111,7 @@ namespace DataAccessLayer
                         _command.Parameters.AddWithValue("@storyGenreID", story.storyGenreID);
                         _command.Parameters.AddWithValue("@storyEditorID", story.storyEditorID);
                         _command.Parameters.AddWithValue("@storyTitle", story.storyTitle);
+                        _command.Parameters.AddWithValue("@storyPublic", story.storyPublic);
                         // this is where the connection is opened
                         _connection.Open();
                         // this is where all commands will be executed
@@ -162,6 +164,7 @@ namespace DataAccessLayer
                             story.storyTitle = (string)_reader["storyTitle"];
                             story.storyURL = (string)_reader["storyURL"];
                             story.storyEditorID = (int)_reader["storyEditorID"];
+                            story.storyPublic = (bool)_reader["storyPublic"];
                         }
                     }
                 }
@@ -175,7 +178,7 @@ namespace DataAccessLayer
             return story;
         }
 
-        // VIEW ONE STORY
+        // VIEW ALL STORIES
         public List<StoryDAO> viewStories()
         {
             List<StoryDAO> storyList = new List<StoryDAO>();
@@ -211,6 +214,7 @@ namespace DataAccessLayer
                                     story.storyTitle = (string)_reader["storyTitle"];
                                     story.storyURL = (string)_reader["storyURL"];
                                     story.storyEditorID = (int)_reader["storyEditorID"];
+                                    story.storyPublic = (bool)_reader["storyPublic"];
                                 }
                             }
                         }
