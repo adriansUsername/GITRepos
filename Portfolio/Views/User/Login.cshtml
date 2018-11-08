@@ -14,7 +14,7 @@
 
             @Html.LabelFor(m => m.singleUser.userName)
             <br />
-            @Html.EditorFor(m => m.singleUser.userName, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.singleUser.userName, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.singleUser.userName)
 
         </div>

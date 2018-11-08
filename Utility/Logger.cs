@@ -22,10 +22,11 @@ namespace Utility
             message += Environment.NewLine;
             message += string.Format("TargetSite: {0}", errorToWrite.TargetSite);
             message += Environment.NewLine;
-            message += "------------------------------------------------------";
+            string divider = new string('-', 300);
+            message += divider;
 
             // Create a streamwriter to add the message string to a text file
-            using (StreamWriter _writer = new StreamWriter("..\\log.txt", true))
+            using (StreamWriter _writer = new StreamWriter("C:\\Users\\Onshore\\Source\\Repos\\Portfolio\\Portfolio\\Utility\\log.txt", true))
             {
                 _writer.WriteLine(message);
             }

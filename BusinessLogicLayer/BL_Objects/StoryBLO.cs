@@ -10,7 +10,7 @@ namespace BusinessLogicLayer.BL_Objects
     {
         public int storyID { get; set; }
         public string storyURL { get; set; }
-        public int storyRating { get; set; }
+        public double storyRating { get; set; }
         public int storyRestrictionID { get; set; }
         public int storyUserID { get; set; }
         public int storyGenreID { get; set; }

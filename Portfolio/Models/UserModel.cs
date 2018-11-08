@@ -57,6 +57,10 @@ namespace Portfolio.Models
         [StringLength(255, ErrorMessage = "Wait! Your description cannot exceed 255 characters!")]
         public string userDescription { get; set; } = "Tell us about yourself. Don't be shy!";
 
+        // For radio forms and such
         public bool isSelected { get; set; } = false;
+
+        // For getting a user's stories
+        public List<StoryModel> userStoryList { get; set; }
     }
 }

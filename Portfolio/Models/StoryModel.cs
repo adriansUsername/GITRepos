@@ -9,7 +9,7 @@ namespace Portfolio.Models
     {
         public int storyID { get; set; }
         public string storyURL { get; set; }
-        public int storyRating { get; set; }
+        public double storyRating { get; set; }
         public int storyRestrictionID { get; set; }
         public int storyUserID { get; set; }
         public int storyGenreID { get; set; }
@@ -17,5 +17,6 @@ namespace Portfolio.Models
         public int storyEditorID { get; set; }
         public bool storyPublic { get; set; }
         public bool isSelected { get; set; } = false;
+        public List<RatingsModel> storyRatingsList { get; set; }
     }
 }

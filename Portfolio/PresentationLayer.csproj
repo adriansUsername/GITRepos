@@ -175,11 +175,8 @@
     <Compile Include="Models\GenreViewModel.cs" />
     <Compile Include="Models\MapperModel.cs" />
     <Compile Include="Models\RatingsModel.cs" />
-    <Compile Include="Models\RatingsViewModel.cs" />
     <Compile Include="Models\RestrictionModel.cs" />
-    <Compile Include="Models\RestrictionViewModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
-    <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\StoryModel.cs" />
     <Compile Include="Models\StoryViewModel.cs" />
     <Compile Include="Models\UpdateModel.cs" />
@@ -187,6 +184,11 @@
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -230,10 +232,11 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Logout.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\Tester\CreateStory.cshtml" />
+    <Content Include="Views\User\UserProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Story\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -249,10 +252,20 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessLogicLayer\BusinessLogicLayer.csproj">
+      <Project>{a3262ef6-3ddc-4b85-aa0e-ed4a3ab7d56f}</Project>
+      <Name>BusinessLogicLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
       <Project>{694e7d6f-0914-415c-9679-9c3a9d41bfd8}</Project>
       <Name>DataAccessLayer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

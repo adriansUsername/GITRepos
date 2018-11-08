@@ -11,7 +11,7 @@ StackTrace:    at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbC
    at DataAccessLayer.ErrorDataAccess.addError(ErrorDAO error) in C:\Users\Onshore\Source\Repos\Portfolio\Portfolio\DataAccessLayer\ErrorDataAccess.cs:line 37
 Message: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
 TargetSite: Boolean TryGetConnection(System.Data.Common.DbConnection, UInt32, Boolean, Boolean, System.Data.Common.DbConnectionOptions, System.Data.ProviderBase.DbConnectionInternal ByRef)
-------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Time: 11/7/2018 4:06:53 PM
 ----------------------I-AM-ERROR----------------------
 StackTrace:    at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
@@ -25,7 +25,7 @@ StackTrace:    at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbC
    at DataAccessLayer.ErrorDataAccess.addError(ErrorDAO error) in C:\Users\Onshore\Source\Repos\Portfolio\Portfolio\DataAccessLayer\ErrorDataAccess.cs:line 37
 Message: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
 TargetSite: Boolean TryGetConnection(System.Data.Common.DbConnection, UInt32, Boolean, Boolean, System.Data.Common.DbConnectionOptions, System.Data.ProviderBase.DbConnectionInternal ByRef)
-------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Time: 11/8/2018 8:39:30 AM
 ----------------------I-AM-ERROR----------------------
 StackTrace:    at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
@@ -39,4 +39,4 @@ StackTrace:    at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbC
    at DataAccessLayer.ErrorDataAccess.addError(ErrorDAO error) in C:\Users\Onshore\Source\Repos\Portfolio\Portfolio\DataAccessLayer\ErrorDataAccess.cs:line 37
 Message: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
 TargetSite: Boolean TryGetConnection(System.Data.Common.DbConnection, UInt32, Boolean, Boolean, System.Data.Common.DbConnectionOptions, System.Data.ProviderBase.DbConnectionInternal ByRef)
-------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
