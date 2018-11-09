@@ -1,52 +1,46 @@
-﻿@model Portfolio.Models.UserModel
+﻿@model Portfolio.Models.UserViewModel
 @using Portfolio.Models
 @{
     ViewBag.Title = "UserProfile";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
-    List<RestrictionModel> restrictionList = (List<RestrictionModel>)Session["RestrictionList"];
-    List<GenreModel> genreList = (List<GenreModel>)Session["GenreList"];
 }
 
 <h2>Profile</h2>
-<h3>@Html.DisplayFor(m => m.userName)</h3>
+<h3>@Html.DisplayFor(m => m.singleUser.userName)</h3>
 <br />
-<h2>Stories Edited: @Html.DisplayFor(m => m.userEdited)</h2>
+<h2>Stories Edited: @Html.DisplayFor(m => m.singleUser.userEdited)</h2>
 <br />
 <h2>Stories Created:</h2>
-@if (Model.userStoryList.Count == 0)
+@if (Model.storyViewModel.storyList.Count == 0)
 {
     <h3>This user has no stories!</h3>
 }
 else
 {
 
-    foreach (StoryModel story in Model.userStoryList)
+    foreach (StoryModel story in Model.storyViewModel.storyList)
     {
         @* check if a story is public OR if this is the current user's profile *@
-        if (story.storyPublic || Model.userName.Equals((string)Session["UserName"]))
+        if (story.storyPublic || Model.singleUser.userName.Equals((string)Session["UserName"]))
         {
-            @* get the restriction for this story *@
-            string storyRestrictionName = "";
-            foreach (RestrictionModel restriction in restrictionList)
+            @* get the genre and restriction for this story *@
+            string storyRestrictionName = Model.storyViewModel.getByID(Model.storyViewModel.restrictionList, story.storyRestrictionID).restrictionName;
+            string storyGenreName = Model.storyViewModel.getByID(Model.storyViewModel.genreList, story.storyGenreID).genreName;
+
+            // get the correct rating
+            string rating = "";
+
+            if (story.storyRating == 0)
             {
-                if (restriction.restrictionID == story.storyRestrictionID)
-                {
-                    storyRestrictionName = restriction.restrictionName;
-                }
+                rating = "Not Rated";
+            }
+            else
+            {
+                rating = story.storyRating + " Stars";
             }
 
-            @* get the genre for this story *@
-            string storyGenreName = "";
-            foreach (GenreModel genre in genreList)
-            {
-                if (genre.genreID == story.storyGenreID)
-                {
-                    storyGenreName = genre.genreName;
-                }
-            }
-
-            <h3>@story.storyTitle - @storyGenreName - @storyRestrictionName - @story.storyRating Stars</h3>
+            <h3>@story.storyTitle - @storyGenreName - @storyRestrictionName - @rating</h3>
+            @Html.ActionLink("Edit", "EditStoryProperties", "Story", story, null)
         }
         else
         {

@@ -207,14 +207,16 @@ namespace DataAccessLayer
                                     // create object to hold info from database
                                     StoryDAO story = new StoryDAO();
                                     story.storyID = (int)_reader["storyID"];
-                                    story.storyRating = (int)_reader["storyRating"];
+                                    story.storyRating = (double)_reader["storyRating"];
                                     story.storyRestrictionID = (int)_reader["storyRestrictionID"];
                                     story.storyUserID = (int)_reader["storyUserID"];
                                     story.storyGenreID = (int)_reader["storyGenreID"];
                                     story.storyTitle = (string)_reader["storyTitle"];
                                     story.storyURL = (string)_reader["storyURL"];
                                     story.storyEditorID = (int)_reader["storyEditorID"];
-                                    story.storyPublic = (bool)_reader["storyPublic"];
+                                    story.storyPublic = _reader.GetBoolean(_reader.GetOrdinal("storyPublic"));
+                                    // add to list to be returned
+                                    storyList.Add(story);
                                 }
                             }
                         }

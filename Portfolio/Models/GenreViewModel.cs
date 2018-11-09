@@ -7,13 +7,14 @@ namespace Portfolio.Models
 {
     public class GenreViewModel
     {
-        GenreModel singleGenre { get; set; }
-        List<GenreModel> genreList { get; set; }
+        public GenreModel singleGenre { get; set; }
+        public List<GenreModel> genreList { get; set; }
 
         public GenreViewModel()
         {
             singleGenre = new GenreModel();
             genreList = new List<GenreModel>();
         }
-    }
+    }  
 }
+

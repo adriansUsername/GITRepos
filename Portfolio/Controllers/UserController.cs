@@ -86,42 +86,54 @@ namespace Portfolio.Controllers
         }
 
         // SEE USER PROFILE
-        public ActionResult UserProfile(UserModel userForProfile)
+        [HttpGet]
+        public ActionResult UserProfile(UserViewModel userForProfile)
         {
-            // List to hold all of a user's stories
-            userForProfile.userStoryList = new List<StoryModel>();
-            // Get all stories
-            List<StoryModel> allStoriesList = MapperModel.map(storyDA.viewStories());
-
-            foreach(StoryModel story in allStoriesList)
+            try
             {
-                // Check which stories belong to the current user
-                if (story.storyUserID == userForProfile.userID)
-                {
-                    // Get all the ratings of a story
-                    List<RatingsModel> allRatingsList = MapperModel.map(ratingsDA.viewRatings());
+                // Set user to view as current user if null or invalid
+                if (userForProfile.singleUser == null || userForProfile.singleUser.userID < 1)
+                    userForProfile = getUser();
 
-                    foreach(RatingsModel rating in allRatingsList)
+                // Get all stories
+                List<StoryModel> allStoriesList = MapperModel.map(storyDA.viewStories());
+
+                foreach (StoryModel story in allStoriesList)
+                {
+                    // Check which stories belong to the current user
+                    if (story.storyUserID == userForProfile.singleUser.userID)
                     {
-                        // Find all the ratings for a story
-                        if (rating.ratingsStoryID == story.storyID)
-                            story.storyRatingsList.Add(rating);
+                        // Add story to story list in the UserModel
+                        userForProfile.storyViewModel.storyList.Add(story);
+
+                        // Get all the ratings of a story
+                        List<RatingsModel> allRatingsList = MapperModel.map(ratingsDA.viewRatings());
+
+                        foreach (RatingsModel rating in allRatingsList)
+                        {
+                            // Find all the ratings for a story
+                            if (rating.ratingsStoryID == story.storyID)
+                                userForProfile.storyViewModel.ratingList.Add(rating);
+                        }
                     }
-                    // Add story to story list in the UserModel
-                    userForProfile.userStoryList.Add(story);
                 }
+                // Get lists to display the restriction and genre of user's story
+                userForProfile.storyViewModel.restrictionList = MapperModel.map(restrictionDA.viewRestrictions());
+                userForProfile.storyViewModel.genreList = MapperModel.map(genreDA.viewGenres());
             }
-            // Get lists to display the info of user's story
-            Session["RestrictionList"] = MapperModel.map(restrictionDA.viewRestrictions());
-            Session["GenreList"] = MapperModel.map(genreDA.viewGenres());
+            catch (Exception error)
+            {
+                // log the error to the error data access
+                errorDA.addError(error);
+            }
 
             return View(userForProfile);
         }
 
         // FUNCTION TO GET THE CURRENT USER LOGGED IN
-        public UserModel getUser()
+        public UserViewModel getUser()
         {
-            UserModel userToReturn = new UserModel();
+            UserViewModel userToReturn = new UserViewModel();
 
             string username = (string)Session["UserName"];
             List<UserModel> userList = MapperModel.map(userDA.viewUsers());
@@ -130,7 +142,7 @@ namespace Portfolio.Controllers
             {
                 if (userInList.userName.Equals(username))
                 {
-                    userToReturn = userInList;
+                    userToReturn.singleUser = userInList;
                     break;
                 }
             }
