@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Profile</h2>
+<br />
 <h3>@Html.DisplayFor(m => m.singleUser.userName)</h3>
 <br />
 <h2>Stories Edited: @Html.DisplayFor(m => m.singleUser.userEdited)</h2>
@@ -29,31 +29,26 @@ else
             string storyGenreName = Model.storyViewModel.getByID(Model.storyViewModel.genreList, story.storyGenreID).genreName;
 
             //get the correct rating
-            string rating = "Not Rated";
-
-            if (story.storyRating > 0)
-            {
-                rating = story.storyRating + " Stars";
-            }
+            string rating = story.storyRating > 0 ? story.storyRating + " Star Rating" : "No Rating Yet";
 
             //only the user of the profile page or an admin will be able to delete AND edit
             int userRole = (int)Session["UserRoleID"];
             if (Model.singleUser.userName.Equals((string)Session["UserName"]) || (userRole == 3))
             {
-                <h3>@story.storyTitle - @storyGenreName - @storyRestrictionName - @rating   @Html.ActionLink("Read", "ReadStory", "Story", story, new { @class = "btn btn-outline-info" })   @Html.ActionLink("Edit", "EditStoryProperties", "Story", story, new { @class = "btn btn-outline-warning" })   @Html.ActionLink("Delete", "DeleteStory", "Story", story, new { @class = "btn btn-outline-danger" })</h3>
+                <h3>@story.storyTitle - @storyGenreName - @storyRestrictionName - @rating   @Html.ActionLink("Delete", "DeleteStory", "Story", story, new { @class = "btn btn-outline-danger float-right" })   @Html.ActionLink("Edit", "EditStoryProperties", "Story", story, new { @class = "btn btn-outline-warning float-right" })    @Html.ActionLink("Read", "ReadStory", "Story", story, new { @class = "btn btn-outline-info float-right" })</h3>
             }
 
             //mods can see the edit button but not the delete button
             else if (userRole == 2)
             {
-                <h3>@story.storyTitle - @storyGenreName - @storyRestrictionName - @rating   @Html.ActionLink("Read", "ReadStory", "Story", story, new { @class = "btn btn-outline-info" })   @Html.ActionLink("Edit", "EditStoryProperties", "Story", story, new { @class = "btn btn-outline-warning" })</h3>
+                <h3>@story.storyTitle - @storyGenreName - @storyRestrictionName - @rating   @Html.ActionLink("Edit", "EditStoryProperties", "Story", story, new { @class = "btn btn-outline-warning float-right" })    @Html.ActionLink("Read", "ReadStory", "Story", story, new { @class = "btn btn-outline-info float-right" })</h3>
             }
 
             //option for regular users viewing this person's profile page
             else
             {
                 <h3>
-                    @story.storyTitle - @storyGenreName - @storyRestrictionName - @rating   @Html.ActionLink("Read", "ReadStory", "Story", story, new { @class = "btn btn-outline-info" })
+                    @story.storyTitle - @storyGenreName - @storyRestrictionName - @rating    @Html.ActionLink("Read", "ReadStory", "Story", story, new { @class = "btn btn-outline-info float-right" })
                 </h3>
             }
         }
@@ -61,5 +56,7 @@ else
         {
             <h3>This user has no public stories!</h3>
         }
+
+        <br />
     }
 }
