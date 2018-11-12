@@ -106,6 +106,29 @@ namespace Portfolio.Controllers
             return result;
         }
 
+        // GET FOR DELETING STORY
+        [HttpGet]
+        public ActionResult DeleteStory(StoryModel model)
+        {
+            UserViewModel viewModel = new UserViewModel();
+            try
+            {
+                // get the user of the story to delete
+                UserModel userFromProfile = MapperModel.map(userDA.viewOneUser(model.storyUserID));
+                // delete the story
+                bool success = storyDA.deleteStory(model.storyID);
+                // add that user to the view model for post
+                viewModel.singleUser = userFromProfile;
+            }
+            catch (Exception error)
+            {
+                // log the error to the error data access
+                errorDA.addError(error);
+            }
+
+            return View(viewModel);
+        }
+
         // FUNCTION TO GET THE CURRENT USER LOGGED IN
         public UserModel getUser()
         {

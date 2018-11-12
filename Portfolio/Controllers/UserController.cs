@@ -85,7 +85,7 @@ namespace Portfolio.Controllers
             return View();
         }
 
-        // SEE USER PROFILE
+        // VIEW USER PROFILE
         [HttpGet]
         public ActionResult UserProfile(UserViewModel userForProfile)
         {

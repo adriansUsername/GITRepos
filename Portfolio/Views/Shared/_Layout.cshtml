@@ -9,43 +9,39 @@
     @using Portfolio.Models
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        @Html.ActionLink("Naming Is Hard", "Index", "Home", null, new { @class = "navbar-brand" })
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-                    @if (Session["UserRoleID"] == null)
-                    {
-                        <li>@Html.ActionLink("Register", "Register", "User")</li>
-                        <li>@Html.ActionLink("Login", "Login", "User")</li>
-                    }
-                    else
-                    {
-                        <li>@Html.ActionLink("Profile", "UserProfile", "User", new UserViewModel(), null)</li>
-                        <li>@Html.ActionLink("Create Story", "CreateStory", "Story")</li>
-                        <li>@Html.ActionLink("Logout", "Logout", "User")</li>
-                    }
-                </ul>
-            </div>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                @if (Session["UserRoleID"] == null)
+                {
+                    <li class="nav-item active">@Html.ActionLink("Register", "Register", "User", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item active">@Html.ActionLink("Login", "Login", "User", null, new { @class = "nav-link" })</li>
+                }
+                else
+                {
+                    <li class="nav-item active">@Html.ActionLink("Profile", "UserProfile", "User", new UserViewModel(), new { @class = "nav-link" })</li>
+                    <li class="nav-item active">@Html.ActionLink("Create Story", "CreateStory", "Story", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item active">@Html.ActionLink("Logout", "Logout", "User", null, new { @class = "nav-link" })</li>
+                }
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit" onclick="">Search</button>
+            </form>
         </div>
-    </div>
+    </nav>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        <div class="copy-footer fixed-bottom bg-primary">
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")

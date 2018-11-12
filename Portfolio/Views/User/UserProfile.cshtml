@@ -17,30 +17,45 @@
 }
 else
 {
-
+    //loop through all of user's stories
     foreach (StoryModel story in Model.storyViewModel.storyList)
     {
-        @* check if a story is public OR if this is the current user's profile *@
+        //check if a story is public OR if this is the current user's profile
+
         if (story.storyPublic || Model.singleUser.userName.Equals((string)Session["UserName"]))
         {
-            @* get the genre and restriction for this story *@
+            //get the genre and restriction for this story
             string storyRestrictionName = Model.storyViewModel.getByID(Model.storyViewModel.restrictionList, story.storyRestrictionID).restrictionName;
             string storyGenreName = Model.storyViewModel.getByID(Model.storyViewModel.genreList, story.storyGenreID).genreName;
 
-            // get the correct rating
-            string rating = "";
+            //get the correct rating
+            string rating = "Not Rated";
 
-            if (story.storyRating == 0)
-            {
-                rating = "Not Rated";
-            }
-            else
+            if (story.storyRating > 0)
             {
                 rating = story.storyRating + " Stars";
             }
 
-            <h3>@story.storyTitle - @storyGenreName - @storyRestrictionName - @rating</h3>
-            @Html.ActionLink("Edit", "EditStoryProperties", "Story", story, null)
+            //only the user of the profile page or an admin will be able to delete AND edit
+            int userRole = (int)Session["UserRoleID"];
+            if (Model.singleUser.userName.Equals((string)Session["UserName"]) || (userRole == 3))
+            {
+                <h3>@story.storyTitle - @storyGenreName - @storyRestrictionName - @rating   @Html.ActionLink("Read", "ReadStory", "Story", story, new { @class = "btn btn-outline-info" })   @Html.ActionLink("Edit", "EditStoryProperties", "Story", story, new { @class = "btn btn-outline-warning" })   @Html.ActionLink("Delete", "DeleteStory", "Story", story, new { @class = "btn btn-outline-danger" })</h3>
+            }
+
+            //mods can see the edit button but not the delete button
+            else if (userRole == 2)
+            {
+                <h3>@story.storyTitle - @storyGenreName - @storyRestrictionName - @rating   @Html.ActionLink("Read", "ReadStory", "Story", story, new { @class = "btn btn-outline-info" })   @Html.ActionLink("Edit", "EditStoryProperties", "Story", story, new { @class = "btn btn-outline-warning" })</h3>
+            }
+
+            //option for regular users viewing this person's profile page
+            else
+            {
+                <h3>
+                    @story.storyTitle - @storyGenreName - @storyRestrictionName - @rating   @Html.ActionLink("Read", "ReadStory", "Story", story, new { @class = "btn btn-outline-info" })
+                </h3>
+            }
         }
         else
         {
