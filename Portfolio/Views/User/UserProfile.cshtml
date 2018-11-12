@@ -24,9 +24,26 @@ else
 
         if (story.storyPublic || Model.singleUser.userName.Equals((string)Session["UserName"]))
         {
-            //get the genre and restriction for this story
-            string storyRestrictionName = Model.storyViewModel.getByID(Model.storyViewModel.restrictionList, story.storyRestrictionID).restrictionName;
-            string storyGenreName = Model.storyViewModel.getByID(Model.storyViewModel.genreList, story.storyGenreID).genreName;
+            string storyRestrictionName = "";
+            string storyGenreName = "";
+
+            //get the restriction for this story
+            foreach(RestrictionModel r in Model.storyViewModel.restrictionList)
+            {
+                if (r.restrictionID == story.storyRestrictionID)
+                {
+                    storyRestrictionName = r.restrictionName;
+                }
+            }
+
+            //get the genre for this story
+            foreach (GenreModel g in Model.storyViewModel.genreList)
+            {
+                if (g.genreID == story.storyGenreID)
+                {
+                    storyGenreName = g.genreName;
+                }
+            }
 
             //get the correct rating
             string rating = story.storyRating > 0 ? story.storyRating + " Star Rating" : "No Rating Yet";

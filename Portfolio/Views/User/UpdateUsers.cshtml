@@ -1,0 +1,62 @@
+﻿@model Portfolio.Models.UserViewModel
+@using Portfolio.Models
+@{
+    ViewBag.Title = "UpdateUsers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <table class="table">
+        <thead>
+            <tr class="table-dark">
+                <th scope="col" style="padding:10px;">@Html.LabelFor(m => m.singleUser.userName)</th>
+                <th scope="col" style="padding:10px;">@Html.LabelFor(m => m.singleUser.userPassword)</th>
+                <th scope="col" style="padding:10px;">@Html.LabelFor(m => m.singleUser.userFirstName)</th>
+                <th scope="col" style="padding:10px;">@Html.LabelFor(m => m.singleUser.userLastName)</th>
+                <th scope="col" style="padding:10px;">@Html.LabelFor(m => m.singleUser.userCity)</th>
+                <th scope="col" style="padding:10px;">@Html.LabelFor(m => m.singleUser.userState)</th>
+                <th scope="col" style="padding:10px;">@Html.LabelFor(m => m.singleUser.userCountry)</th>
+                <th scope="col" style="padding:10px;">@Html.LabelFor(m => m.singleUser.userBDay)</th>
+                <th scope="col" style="padding:10px;">@Html.LabelFor(m => m.singleUser.userEdited)</th>
+                <th scope="col" style="padding:10px;">@Html.LabelFor(m => m.singleUser.userRoleID)</th>
+                <th scope="col" style="padding:10px;">Delete User</th>
+            </tr>
+        </thead>
+
+        @for (int i = 0; i < Model.userList.Count; i++)
+        {
+        <tr>
+            <th style="padding:10px;">@Html.TextBoxFor(m => m.userList[i].userName)</th>
+            <th style="padding:10px;">@Html.TextBoxFor(m => m.userList[i].userPassword)</th>
+            <th style="padding:10px;">@Html.TextBoxFor(m => m.userList[i].userFirstName)</th>
+            <th style="padding:10px;">@Html.TextBoxFor(m => m.userList[i].userLastName)</th>
+            <th style="padding:10px;">@Html.TextBoxFor(m => m.userList[i].userCity)</th>
+            <th style="padding:10px;">@Html.TextBoxFor(m => m.userList[i].userState)</th>
+            <th style="padding:10px;">@Html.TextBoxFor(m => m.userList[i].userCountry)</th>
+            <th style="padding:10px;">@Html.EditorFor(m => m.userList[i].userBDay)</th>
+            <th style="padding:10px;">@Html.EditorFor(m => m.userList[i].userEdited)</th>
+
+                @* don't let admin change own role or delete self *@
+                @if (Model.userList[i].userName.Equals(Session["UserName"].ToString()))
+                {
+                    <th style="padding:10px;">@Html.DropDownListFor(m => m.userList[i].userRoleID, Model.roleOptions, new { @disabled = "disabled" })</th>
+                    <th style="text-align:center;padding:10px;">@Html.EditorFor(m => m.userList[i].isSelected, new { @disabled = "disabled" })</th>
+                }
+                else
+                {
+                    <th style="padding:10px;">@Html.DropDownListFor(m => m.userList[i].userRoleID, Model.roleOptions)</th>
+                    <th style="text-align:center;padding:10px;">@Html.EditorFor(m => m.userList[i].isSelected)</th>
+                }
+
+            @Html.HiddenFor(m => m.userList[i].userID)
+        </tr>
+        }
+
+    </table>
+
+    <br />
+    <input type="submit" value="Save Changes" class="btn btn-dark" />
+}

@@ -41,7 +41,7 @@ namespace Portfolio.Models
         [Required(ErrorMessage = "Please enter the state's full name!")]
         [DisplayName("State")]
         [StringLength(70, ErrorMessage = "The state's name must not exceed 70 characters!")]
-        public string userState { get; set; } = "ST";
+        public string userState { get; set; } = "State";
 
         [Required(ErrorMessage = "Please enter the country's full name!")]
         [DisplayName("Country")]
@@ -49,10 +49,10 @@ namespace Portfolio.Models
         public string userCountry { get; set; } = "Country";
 
         [Required]
-        [DisplayName("Role ID#")]
+        [DisplayName("Role")]
         public int userRoleID { get; set; } = 0;
 
-        [DisplayName("# of Stories Edited")]
+        [DisplayName("Stories Edited")]
         public int userEdited { get; set; } = 0; // count of stories this user edited
 
         [DisplayName("Birthday")]

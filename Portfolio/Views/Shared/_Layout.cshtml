@@ -26,6 +26,14 @@
                 {
                     <li class="nav-item active">@Html.ActionLink("Profile", "UserProfile", "User", new UserViewModel(), new { @class = "nav-link" })</li>
                     <li class="nav-item active">@Html.ActionLink("Create Story", "CreateStory", "Story", null, new { @class = "nav-link" })</li>
+
+                    // options for mods and admins
+                    if ((int)Session["UserRoleID"] > 1)
+                    {
+                        <li class="nav-item active">@Html.ActionLink("Update Genres", "UpdateGenres", "Genre", null, new { @class = "nav-link" })</li>
+                        <li class="nav-item active">@Html.ActionLink("Update Users", "UpdateUsers", "User", null, new { @class = "nav-link" })</li>
+                    }
+
                     <li class="nav-item active">@Html.ActionLink("Logout", "Logout", "User", null, new { @class = "nav-link" })</li>
                 }
             </ul>

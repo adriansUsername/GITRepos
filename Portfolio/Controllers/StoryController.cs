@@ -110,15 +110,29 @@ namespace Portfolio.Controllers
         [HttpGet]
         public ActionResult DeleteStory(StoryModel model)
         {
+            try
+            {
+                // delete the story
+                bool success = storyDA.deleteStory(model.storyID);
+            }
+            catch (Exception error)
+            {
+                // log the error to the error data access
+                errorDA.addError(error);
+            }
+
+            return View(model);
+        }
+
+        // POST FOR RETURNING TO A PROFILE FROM A DELETE STORY
+        [HttpPost]
+        public ActionResult DeleteStory(int userID)
+        {
             UserViewModel viewModel = new UserViewModel();
             try
             {
-                // get the user of the story to delete
-                UserModel userFromProfile = MapperModel.map(userDA.viewOneUser(model.storyUserID));
-                // delete the story
-                bool success = storyDA.deleteStory(model.storyID);
-                // add that user to the view model for post
-                viewModel.singleUser = userFromProfile;
+                // get the user of the profile viewed before delete page
+                viewModel.singleUser = MapperModel.map(userDA.viewOneUser(userID));
             }
             catch (Exception error)
             {
@@ -153,12 +167,28 @@ namespace Portfolio.Controllers
         public void populateViewModelLists(ref StoryViewModel storyViewModel)
         {
             // get all restrictions and populate dropdown list
-            storyViewModel.restrictionList = MapperModel.map(restrictionDA.viewRestrictions());
-            storyViewModel.restrictionOptions = storyViewModel.populateOptions(storyViewModel.restrictionList);
+            List<RestrictionModel> restrictions = MapperModel.map(restrictionDA.viewRestrictions());
+
+            foreach (RestrictionModel r in restrictions)
+            {
+                storyViewModel.restrictionOptions.Add(new SelectListItem
+                {
+                    Text = r.restrictionName,
+                    Value = r.restrictionID.ToString()
+                });
+            }
 
             // get all genres and populate dropdown list
-            storyViewModel.genreList = MapperModel.map(genreDA.viewGenres());
-            storyViewModel.genreOptions = storyViewModel.populateOptions(storyViewModel.genreList);
+            List<GenreModel> genres = MapperModel.map(genreDA.viewGenres());
+
+            foreach (GenreModel g in genres)
+            {
+                storyViewModel.genreOptions.Add(new SelectListItem
+                {
+                    Text = g.genreName,
+                    Value = g.genreID.ToString()
+                });
+            }
         }
     }
 }

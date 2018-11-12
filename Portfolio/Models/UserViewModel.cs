@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Portfolio.Models
 {
@@ -10,12 +11,14 @@ namespace Portfolio.Models
         public UserModel singleUser { get; set; }
         public List<UserModel> userList { get; set; }
         public StoryViewModel storyViewModel { get; set; }
+        public List<SelectListItem> roleOptions { get; set; }
 
         public UserViewModel()
         {
             singleUser = new UserModel();
             userList = new List<UserModel>();
             storyViewModel = new StoryViewModel();
+            roleOptions = new List<SelectListItem>();
         }
     }
 }

@@ -25,7 +25,7 @@ namespace DataAccessLayer
                 // create connection to database using connection string variable
                 using (SqlConnection _connection = new SqlConnection(connectionString))
                 {
-                    using (SqlCommand _command = new SqlCommand("sp_ViewRestrictions", _connection))
+                    using (SqlCommand _command = new SqlCommand("sp_ViewRoles", _connection))
                     {
                         // specify what type of command to use
                         _command.CommandType = CommandType.StoredProcedure;

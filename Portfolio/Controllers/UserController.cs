@@ -16,6 +16,7 @@ namespace Portfolio.Controllers
         RestrictionDataAccess restrictionDA = new RestrictionDataAccess();
         GenreDataAccess genreDA = new GenreDataAccess();
         RatingsDataAccess ratingsDA = new RatingsDataAccess();
+        RoleDataAccess roleDA = new RoleDataAccess();
 
         // LOGIN USER
         public ActionResult Login()
@@ -93,7 +94,20 @@ namespace Portfolio.Controllers
             {
                 // Set user to view as current user if null or invalid
                 if (userForProfile.singleUser == null || userForProfile.singleUser.userID < 1)
-                    userForProfile = getUser();
+                {
+                    // find the current user by going through all users
+                    List<UserModel> userList = MapperModel.map(userDA.viewUsers());
+
+                    foreach (UserModel userInList in userList)
+                    {
+                        // check if usernames match
+                        if (userInList.userName.Equals(Session["UserName"].ToString()))
+                        {
+                            userForProfile.singleUser = userInList;
+                            break;
+                        }
+                    }
+                }
 
                 // Get all stories
                 List<StoryModel> allStoriesList = MapperModel.map(storyDA.viewStories());
@@ -130,24 +144,59 @@ namespace Portfolio.Controllers
             return View(userForProfile);
         }
 
-        // FUNCTION TO GET THE CURRENT USER LOGGED IN
-        public UserViewModel getUser()
+        // GET TO VIEW AND UPDATE ALL USERS
+        [HttpGet]
+        public ActionResult UpdateUsers()
         {
-            UserViewModel userToReturn = new UserViewModel();
+            UserViewModel viewModel = new UserViewModel();
 
-            string username = (string)Session["UserName"];
-            List<UserModel> userList = MapperModel.map(userDA.viewUsers());
-
-            foreach(UserModel userInList in userList)
+            try
             {
-                if (userInList.userName.Equals(username))
+                // get all users from database
+                viewModel.userList = MapperModel.map(userDA.viewUsers());
+
+                // create role select list for editing in dropdown
+                List<RoleModel> allRoles = MapperModel.map(roleDA.viewRoles());
+
+                foreach (RoleModel r in allRoles)
                 {
-                    userToReturn.singleUser = userInList;
-                    break;
+                    viewModel.roleOptions.Add(new SelectListItem
+                    {
+                        Text = r.roleName,
+                        Value = r.roleID.ToString()
+                    });
                 }
             }
+            catch (Exception error)
+            {
+                // log the error to the error data access
+                errorDA.addError(error);
+            }
 
-            return userToReturn;
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateUsers(UserViewModel viewModel)
+        {
+            try
+            {
+                foreach(UserModel userFromTable in viewModel.userList)
+                {
+                    //delete users that were selected OR update if not delete
+                    if (userFromTable.isSelected)
+                        userDA.deleteUser(userFromTable.userID);
+                    else
+                        userDA.updateUser(MapperModel.map(userFromTable));
+                }
+            }
+            catch (Exception error)
+            {
+                // log the error to the error data access
+                errorDA.addError(error);
+            }
+
+            return View();
         }
     }
 }
