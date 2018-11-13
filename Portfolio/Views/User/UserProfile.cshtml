@@ -5,8 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<br />
-<h3>@Html.DisplayFor(m => m.singleUser.userName)</h3>
+@if (Session["UserName"].ToString().Equals(Model.singleUser.userName))
+{
+    <h3>@Html.DisplayFor(m => m.singleUser.userName) @Html.ActionLink("Edit Profile", "UpdateProfile", Model.singleUser, new { @class = "btn btn-outline-warning" })</h3>
+}
+else
+{
+    <h3>@Html.DisplayFor(m => m.singleUser.userName)</h3>
+}
+
 <br />
 <h2>Stories Edited: @Html.DisplayFor(m => m.singleUser.userEdited)</h2>
 <br />
@@ -28,7 +35,7 @@ else
             string storyGenreName = "";
 
             //get the restriction for this story
-            foreach(RestrictionModel r in Model.storyViewModel.restrictionViewModel.restrictionList)
+            foreach (RestrictionModel r in Model.storyViewModel.restrictionViewModel.restrictionList)
             {
                 if (r.restrictionID == story.storyRestrictionID)
                 {
@@ -74,6 +81,6 @@ else
             <h3>This user has no public stories!</h3>
         }
 
-        <br />
+
     }
 }

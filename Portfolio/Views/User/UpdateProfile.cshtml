@@ -1,0 +1,103 @@
+﻿@model Portfolio.Models.UserModel
+@using Portfolio.Models
+@{
+    ViewBag.Title = "UpdateProfile";
+}
+
+<h2>Update Profile</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="container">
+
+    <div class="form-group">
+
+        @Html.LabelFor(m => m.userName)
+        <br />
+        @Html.EditorFor(m => m.userName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.userName)
+
+    </div>
+
+    <div class="form-group">
+
+        @Html.LabelFor(m => m.userPassword)
+        <br />
+        @Html.EditorFor(m => m.userPassword, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.userPassword)
+
+    </div>
+
+    <div class="form-group">
+
+        @Html.LabelFor(m => m.userFirstName)
+        <br />
+        @Html.EditorFor(m => m.userFirstName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.userFirstName)
+
+    </div>
+
+    <div class="form-group">
+
+        @Html.LabelFor(m => m.userLastName)
+        <br />
+        @Html.EditorFor(m => m.userLastName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.userLastName)
+
+    </div>
+
+    <div class="form-group">
+
+        @Html.LabelFor(m => m.userCity)
+        <br />
+        @Html.EditorFor(m => m.userCity, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.userCity)
+
+    </div>
+
+    <div class="form-group">
+
+        @Html.LabelFor(m => m.userState)
+        <br />
+        @Html.EditorFor(m => m.userState, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.userState)
+
+    </div>
+
+    <div class="form-group">
+
+        @Html.LabelFor(m => m.userCountry)
+        <br />
+        @Html.EditorFor(m => m.userCountry, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.userCountry)
+
+    </div>
+
+    <div class="form-group">
+
+        @Html.LabelFor(m => m.userBDay)
+        <br />
+        @Html.EditorFor(m => m.userBDay, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.userBDay)
+
+    </div>
+
+    <div class="form-group">
+
+        @Html.LabelFor(m => m.userDescription)
+        <br />
+        @Html.EditorFor(m => m.userDescription, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.userDescription)
+
+    </div>
+
+    @Html.HiddenFor(m => m.userID)
+    @Html.HiddenFor(m => m.userEdited)
+
+    <input type="submit" class="btn-warning" value="Update" />
+
+</div>
+}

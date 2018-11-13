@@ -203,5 +203,35 @@ namespace Portfolio.Controllers
 
             return RedirectToAction("UpdateUsers");
         }
+
+        // GET FOR UPDATING ONE'S PROFILE
+        [HttpGet]
+        public ActionResult UpdateProfile(UserModel model)
+        {
+            return View(model);
+        }
+
+        // POST FOR UPDATING ONE'S PROFILE
+        [HttpPost]
+        [ActionName("UpdateProfile")]
+        public ActionResult UpdateProfilePost(UserModel viewModel)
+        {
+            ActionResult result = View(viewModel);
+
+            try
+            {
+                bool success = userDA.updateUser(MapperModel.map(viewModel));
+
+                if (success)
+                    result = RedirectToAction("UserProfile", viewModel);
+            }
+            catch (Exception error)
+            {
+                // log the error to the error data access
+                errorDA.addError(error);
+            }
+
+            return result;
+        }
     }
 }

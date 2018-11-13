@@ -62,6 +62,7 @@ namespace Portfolio.Models
         public string userBDay { get; set; } = DateTime.Now.Date.ToShortDateString();
 
         [DisplayName("About Me")]
+        [DataType(DataType.MultilineText)]
         [StringLength(255, ErrorMessage = "Wait! Your description cannot exceed 255 characters!")]
         public string userDescription { get; set; } = "Tell us about yourself. Don't be shy!";
 
