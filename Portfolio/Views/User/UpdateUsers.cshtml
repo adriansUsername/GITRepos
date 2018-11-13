@@ -78,8 +78,8 @@
                             <td>@Html.EditorFor(m => m.userList[i].isSelected)</td>
                         }
 
-                        Html.HiddenFor(m => m.userList[i].userID);
-                        Html.HiddenFor(m => m.userList[i].userDescription);
+                        @Html.HiddenFor(m => m.userList[i].userID);
+                        @Html.HiddenFor(m => m.userList[i].userDescription);
                     }
                 </tr>
             }
