@@ -41,40 +41,15 @@
                     <td>@Html.EditorFor(m => m.userList[i].userEdited)</td>
 
                     @{
-                        //create a role select list where the user's role is already selected
-                        List<SelectListItem> roleOptions = new List<SelectListItem>();
-
-                        foreach (RoleModel r in Model.roleViewModel.roleList)
-                        {
-                            //check if this role is the user's role
-                            if (Model.userList[i].userRoleID == r.roleID)
-                            {
-                                roleOptions.Add(new SelectListItem
-                                {
-                                    Text = r.roleName,
-                                    Value = r.roleID.ToString(),
-                                    Selected = true
-                                });
-                            }
-                            else
-                            {
-                                roleOptions.Add(new SelectListItem
-                                {
-                                    Text = r.roleName,
-                                    Value = r.roleID.ToString()
-                                });
-                            }
-                        }
-
                         //don't let admin change own role or delete self
                         if (Model.userList[i].userName.Equals(Session["UserName"].ToString()))
                         {
-                            <td>@Html.DropDownListFor(m => m.userList[i].userRoleID, roleOptions, new { @disabled = "disabled" })</td>
+                            <td>@Html.DropDownListFor(m => m.userList[i].userRoleID, new SelectList(Model.roleViewModel.roleList, "roleID", "roleName", Model.userList[i].userRoleID), new { @disabled = "disabled" })</td>
                             <td>@Html.CheckBoxFor(m => m.userList[i].isSelected, new { @disabled = "disabled" })</td>
                         }
                         else
                         {
-                            <td>@Html.DropDownListFor(m => m.userList[i].userRoleID, roleOptions)</td>
+                            <td>@Html.DropDownListFor(m => m.userList[i].userRoleID, new SelectList(Model.roleViewModel.roleList, "roleID", "roleName", Model.userList[i].userRoleID))</td>
                             <td>@Html.EditorFor(m => m.userList[i].isSelected)</td>
                         }
 
