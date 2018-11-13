@@ -11,22 +11,18 @@ namespace Portfolio.Models
         public StoryModel singleStory { get; set; }
         public List<StoryModel> storyList { get; set; }
         public List<UserModel> userList { get; set; }
-        public List<RatingsModel> ratingList { get; set; }
-        public List<RestrictionModel> restrictionList { get; set; }
-        public List<GenreModel> genreList { get; set; }
-        public List<SelectListItem> genreOptions { get; set; }
-        public List<SelectListItem> restrictionOptions { get; set; }
+        public GenreViewModel genreViewModel { get; set; }
+        public RestrictionViewModel restrictionViewModel { get; set; }
+        public RatingsViewModel ratingsViewModel { get; set; }
 
         public StoryViewModel()
         {
             singleStory = new StoryModel();
             storyList = new List<StoryModel>();
             userList = new List<UserModel>();
-            ratingList = new List<RatingsModel>();
-            restrictionList = new List<RestrictionModel>();
-            genreList = new List<GenreModel>();
-            restrictionOptions = new List<SelectListItem>();
-            genreOptions = new List<SelectListItem>();
+            genreViewModel = new GenreViewModel();
+            restrictionViewModel = new RestrictionViewModel();
+            ratingsViewModel = new RatingsViewModel();
         }
     }
 }

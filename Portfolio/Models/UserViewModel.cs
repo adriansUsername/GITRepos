@@ -11,14 +11,14 @@ namespace Portfolio.Models
         public UserModel singleUser { get; set; }
         public List<UserModel> userList { get; set; }
         public StoryViewModel storyViewModel { get; set; }
-        public List<SelectListItem> roleOptions { get; set; }
+        public RoleViewModel roleViewModel { get; set; }
 
         public UserViewModel()
         {
             singleUser = new UserModel();
             userList = new List<UserModel>();
+            roleViewModel = new RoleViewModel();
             storyViewModel = new StoryViewModel();
-            roleOptions = new List<SelectListItem>();
         }
     }
 }

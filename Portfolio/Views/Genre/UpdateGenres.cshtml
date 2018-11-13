@@ -1,9 +1,47 @@
 ﻿@model Portfolio.Models.GenreViewModel
-
+@using Portfolio.Models
 @{
     ViewBag.Title = "UpdateGenres";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>UpdateGenres</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
+    <table class="table user-table">
+        <thead>
+            <tr class="table-dark">
+                <th scope="col">@Html.LabelFor(m => m.singleGenre.genreName)</th>
+                <th scope="col">@Html.LabelFor(m => m.singleGenre.genreDescription)</th>
+                <th scope="col">@Html.LabelFor(m => m.singleGenre.genreIsFiction)</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+
+        @for (int i = 0; i < Model.genreList.Count; i++)
+        {
+            <tr>
+                <td>@Html.TextBoxFor(m => m.genreList[i].genreName)</td>
+                <td>@Html.TextBoxFor(m => m.genreList[i].genreDescription)</td>
+                <td>@Html.EditorFor(m => m.genreList[i].genreIsFiction)</td>
+
+                @* only admins can delete genres *@
+                @if ((int)Session["UserRoleID"] > 2)
+                {
+                    <td>@Html.CheckBoxFor(m => m.genreList[i].isSelected)</td>
+                }
+                else
+                {
+                    <td>@Html.CheckBoxFor(m => m.genreList[i].isSelected, new { @disabled = "disabled" })</td>
+                }
+
+                @Html.HiddenFor(m => m.genreList[i].genreID)
+            </tr>
+        }
+
+    </table>
+
+    <br />
+    <input type="submit" value="Save" class="btn btn-dark" />
+}

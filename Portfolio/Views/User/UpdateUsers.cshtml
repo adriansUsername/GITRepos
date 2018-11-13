@@ -9,54 +9,84 @@
 {
     @Html.AntiForgeryToken()
 
-    <table class="table">
+    <table class="table user-table">
         <thead>
             <tr class="table-dark">
-                <th scope="col" style="padding:10px;">@Html.LabelFor(m => m.singleUser.userName)</th>
-                <th scope="col" style="padding:10px;">@Html.LabelFor(m => m.singleUser.userPassword)</th>
-                <th scope="col" style="padding:10px;">@Html.LabelFor(m => m.singleUser.userFirstName)</th>
-                <th scope="col" style="padding:10px;">@Html.LabelFor(m => m.singleUser.userLastName)</th>
-                <th scope="col" style="padding:10px;">@Html.LabelFor(m => m.singleUser.userCity)</th>
-                <th scope="col" style="padding:10px;">@Html.LabelFor(m => m.singleUser.userState)</th>
-                <th scope="col" style="padding:10px;">@Html.LabelFor(m => m.singleUser.userCountry)</th>
-                <th scope="col" style="padding:10px;">@Html.LabelFor(m => m.singleUser.userBDay)</th>
-                <th scope="col" style="padding:10px;">@Html.LabelFor(m => m.singleUser.userEdited)</th>
-                <th scope="col" style="padding:10px;">@Html.LabelFor(m => m.singleUser.userRoleID)</th>
-                <th scope="col" style="padding:10px;">Delete User</th>
+                <th scope="col">@Html.LabelFor(m => m.singleUser.userName)</th>
+                <th scope="col">@Html.LabelFor(m => m.singleUser.userPassword)</th>
+                <th scope="col">@Html.LabelFor(m => m.singleUser.userFirstName)</th>
+                <th scope="col">@Html.LabelFor(m => m.singleUser.userLastName)</th>
+                <th scope="col">@Html.LabelFor(m => m.singleUser.userCity)</th>
+                <th scope="col">@Html.LabelFor(m => m.singleUser.userState)</th>
+                <th scope="col">@Html.LabelFor(m => m.singleUser.userCountry)</th>
+                <th scope="col">@Html.LabelFor(m => m.singleUser.userBDay)</th>
+                <th scope="col">@Html.LabelFor(m => m.singleUser.userEdited)</th>
+                <th scope="col">@Html.LabelFor(m => m.singleUser.userRoleID)</th>
+                <th scope="col">Delete</th>
             </tr>
         </thead>
 
-        @for (int i = 0; i < Model.userList.Count; i++)
-        {
-        <tr>
-            <th style="padding:10px;">@Html.TextBoxFor(m => m.userList[i].userName)</th>
-            <th style="padding:10px;">@Html.TextBoxFor(m => m.userList[i].userPassword)</th>
-            <th style="padding:10px;">@Html.TextBoxFor(m => m.userList[i].userFirstName)</th>
-            <th style="padding:10px;">@Html.TextBoxFor(m => m.userList[i].userLastName)</th>
-            <th style="padding:10px;">@Html.TextBoxFor(m => m.userList[i].userCity)</th>
-            <th style="padding:10px;">@Html.TextBoxFor(m => m.userList[i].userState)</th>
-            <th style="padding:10px;">@Html.TextBoxFor(m => m.userList[i].userCountry)</th>
-            <th style="padding:10px;">@Html.EditorFor(m => m.userList[i].userBDay)</th>
-            <th style="padding:10px;">@Html.EditorFor(m => m.userList[i].userEdited)</th>
+        @{
+            for (int i = 0; i < Model.userList.Count; i++)
+            {
+                <tr>
+                    <td>@Html.TextBoxFor(m => m.userList[i].userName)</td>
+                    <td>@Html.TextBoxFor(m => m.userList[i].userPassword)</td>
+                    <td>@Html.TextBoxFor(m => m.userList[i].userFirstName)</td>
+                    <td>@Html.TextBoxFor(m => m.userList[i].userLastName)</td>
+                    <td>@Html.TextBoxFor(m => m.userList[i].userCity)</td>
+                    <td>@Html.TextBoxFor(m => m.userList[i].userState)</td>
+                    <td>@Html.TextBoxFor(m => m.userList[i].userCountry)</td>
+                    <td>@Html.EditorFor(m => m.userList[i].userBDay)</td>
+                    <td>@Html.EditorFor(m => m.userList[i].userEdited)</td>
 
-                @* don't let admin change own role or delete self *@
-                @if (Model.userList[i].userName.Equals(Session["UserName"].ToString()))
-                {
-                    <th style="padding:10px;">@Html.DropDownListFor(m => m.userList[i].userRoleID, Model.roleOptions, new { @disabled = "disabled" })</th>
-                    <th style="text-align:center;padding:10px;">@Html.EditorFor(m => m.userList[i].isSelected, new { @disabled = "disabled" })</th>
-                }
-                else
-                {
-                    <th style="padding:10px;">@Html.DropDownListFor(m => m.userList[i].userRoleID, Model.roleOptions)</th>
-                    <th style="text-align:center;padding:10px;">@Html.EditorFor(m => m.userList[i].isSelected)</th>
-                }
+                    @{
+                        //create a role select list where the user's role is already selected
+                        List<SelectListItem> roleOptions = new List<SelectListItem>();
 
-            @Html.HiddenFor(m => m.userList[i].userID)
-        </tr>
+                        foreach (RoleModel r in Model.roleViewModel.roleList)
+                        {
+                            //check if this role is the user's role
+                            if (Model.userList[i].userRoleID == r.roleID)
+                            {
+                                roleOptions.Add(new SelectListItem
+                                {
+                                    Text = r.roleName,
+                                    Value = r.roleID.ToString(),
+                                    Selected = true
+                                });
+                            }
+                            else
+                            {
+                                roleOptions.Add(new SelectListItem
+                                {
+                                    Text = r.roleName,
+                                    Value = r.roleID.ToString()
+                                });
+                            }
+                        }
+
+                        //don't let admin change own role or delete self
+                        if (Model.userList[i].userName.Equals(Session["UserName"].ToString()))
+                        {
+                            <td>@Html.DropDownListFor(m => m.userList[i].userRoleID, roleOptions, new { @disabled = "disabled" })</td>
+                            <td>@Html.CheckBoxFor(m => m.userList[i].isSelected, new { @disabled = "disabled" })</td>
+                        }
+                        else
+                        {
+                            <td>@Html.DropDownListFor(m => m.userList[i].userRoleID, roleOptions)</td>
+                            <td>@Html.EditorFor(m => m.userList[i].isSelected)</td>
+                        }
+
+                        Html.HiddenFor(m => m.userList[i].userID);
+                        Html.HiddenFor(m => m.userList[i].userDescription);
+                    }
+                </tr>
+            }
         }
 
     </table>
 
     <br />
-    <input type="submit" value="Save Changes" class="btn btn-dark" />
+    <input type="submit" value="Save" class="btn btn-dark" />
 }

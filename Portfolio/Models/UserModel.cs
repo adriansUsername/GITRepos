@@ -56,15 +56,16 @@ namespace Portfolio.Models
         public int userEdited { get; set; } = 0; // count of stories this user edited
 
         [DisplayName("Birthday")]
-        [DataType(DataType.Date)]
+        //[DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "Please enter your birthday!")]
-        public DateTime userBDay { get; set; } = DateTime.Now.Date;
+        public string userBDay { get; set; } = DateTime.Now.Date.ToShortDateString();
 
         [DisplayName("About Me")]
         [StringLength(255, ErrorMessage = "Wait! Your description cannot exceed 255 characters!")]
         public string userDescription { get; set; } = "Tell us about yourself. Don't be shy!";
 
-        // For radio forms and such
+        // For checkboxes
         public bool isSelected { get; set; } = false;
     }
 }

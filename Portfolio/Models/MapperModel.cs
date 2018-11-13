@@ -211,7 +211,7 @@ namespace Portfolio.Models
             userToReturn.userCountry = userToMap.userCountry;
             userToReturn.userRoleID = userToMap.userRoleID;
             userToReturn.userEdited = userToMap.userEdited;
-            userToReturn.userBDay = userToMap.userBDay;
+            userToReturn.userBDay = Convert.ToDateTime(userToMap.userBDay);
             userToReturn.userDescription = userToMap.userDescription;
 
             return userToReturn;
@@ -231,7 +231,7 @@ namespace Portfolio.Models
             userToReturn.userCountry = userToMap.userCountry;
             userToReturn.userRoleID = userToMap.userRoleID;
             userToReturn.userEdited = userToMap.userEdited;
-            userToReturn.userBDay = userToMap.userBDay;
+            userToReturn.userBDay = userToMap.userBDay.ToShortDateString();
             userToReturn.userDescription = userToMap.userDescription;
 
             return userToReturn;

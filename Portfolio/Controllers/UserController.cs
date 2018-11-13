@@ -18,13 +18,15 @@ namespace Portfolio.Controllers
         RatingsDataAccess ratingsDA = new RatingsDataAccess();
         RoleDataAccess roleDA = new RoleDataAccess();
 
-        // LOGIN USER
+        // GET FOR LOGIN USER
+        [HttpGet]
         public ActionResult Login()
         {
             UserViewModel model = new UserViewModel();
             return View(model);
         }
 
+        // POST FOR LOGIN USER
         [HttpPost]
         public ActionResult Login(UserViewModel model)
         {
@@ -51,13 +53,14 @@ namespace Portfolio.Controllers
             return result;
         }
 
-        // REGISTER USER
+        // GET FOR REGISTER USER
         public ActionResult Register()
         {
             UserViewModel model = new UserViewModel();
             return View(model);
         }
 
+        // POST FOR REGISTER USER
         [HttpPost]
         public ActionResult Register(UserViewModel model)
         {
@@ -79,14 +82,14 @@ namespace Portfolio.Controllers
             return result;
         }
 
-        // LOGOUT USER
+        // GET FOR LOGOUT USER
         public ActionResult Logout()
         {
             Session.Clear();
             return View();
         }
 
-        // VIEW USER PROFILE
+        // GET FOR VIEW USER PROFILE
         [HttpGet]
         public ActionResult UserProfile(UserViewModel userForProfile)
         {
@@ -109,6 +112,10 @@ namespace Portfolio.Controllers
                     }
                 }
 
+                // If StoryViewModel is null then instantiate it
+                if (userForProfile.storyViewModel == null)
+                    userForProfile.storyViewModel = new StoryViewModel();
+
                 // Get all stories
                 List<StoryModel> allStoriesList = MapperModel.map(storyDA.viewStories());
 
@@ -127,13 +134,13 @@ namespace Portfolio.Controllers
                         {
                             // Find all the ratings for a story
                             if (rating.ratingsStoryID == story.storyID)
-                                userForProfile.storyViewModel.ratingList.Add(rating);
+                                userForProfile.storyViewModel.ratingsViewModel.ratingsList.Add(rating);
                         }
                     }
                 }
                 // Get lists to display the restriction and genre of user's story
-                userForProfile.storyViewModel.restrictionList = MapperModel.map(restrictionDA.viewRestrictions());
-                userForProfile.storyViewModel.genreList = MapperModel.map(genreDA.viewGenres());
+                userForProfile.storyViewModel.restrictionViewModel.restrictionList = MapperModel.map(restrictionDA.viewRestrictions());
+                userForProfile.storyViewModel.genreViewModel.genreList = MapperModel.map(genreDA.viewGenres());
             }
             catch (Exception error)
             {
@@ -152,20 +159,9 @@ namespace Portfolio.Controllers
 
             try
             {
-                // get all users from database
+                // get all users and roles from database
                 viewModel.userList = MapperModel.map(userDA.viewUsers());
-
-                // create role select list for editing in dropdown
-                List<RoleModel> allRoles = MapperModel.map(roleDA.viewRoles());
-
-                foreach (RoleModel r in allRoles)
-                {
-                    viewModel.roleOptions.Add(new SelectListItem
-                    {
-                        Text = r.roleName,
-                        Value = r.roleID.ToString()
-                    });
-                }
+                viewModel.roleViewModel.roleList = MapperModel.map(roleDA.viewRoles());
             }
             catch (Exception error)
             {
@@ -176,18 +172,27 @@ namespace Portfolio.Controllers
             return View(viewModel);
         }
 
+        // POST TO UPDATE OR DELETE USERS
         [HttpPost]
         public ActionResult UpdateUsers(UserViewModel viewModel)
         {
             try
             {
-                foreach(UserModel userFromTable in viewModel.userList)
+                for(int i = 0; i < viewModel.userList.Count; i++)
                 {
-                    //delete users that were selected OR update if not delete
-                    if (userFromTable.isSelected)
-                        userDA.deleteUser(userFromTable.userID);
+                    //delete users that were selected OR update if not deleted
+                    if (viewModel.userList[i].isSelected)
+                        userDA.deleteUser(viewModel.userList[i].userID);
                     else
-                        userDA.updateUser(MapperModel.map(userFromTable));
+                    {
+                        //check if role ID is 0
+                        if (viewModel.userList[i].userRoleID == 0)
+                        {
+                            viewModel.userList[i].userRoleID = 3;
+                        }
+
+                        userDA.updateUser(MapperModel.map(viewModel.userList[i]));
+                    }
                 }
             }
             catch (Exception error)
@@ -196,7 +201,7 @@ namespace Portfolio.Controllers
                 errorDA.addError(error);
             }
 
-            return View();
+            return RedirectToAction("UpdateUsers");
         }
     }
 }

@@ -28,7 +28,7 @@ else
             string storyGenreName = "";
 
             //get the restriction for this story
-            foreach(RestrictionModel r in Model.storyViewModel.restrictionList)
+            foreach(RestrictionModel r in Model.storyViewModel.restrictionViewModel.restrictionList)
             {
                 if (r.restrictionID == story.storyRestrictionID)
                 {
@@ -37,7 +37,7 @@ else
             }
 
             //get the genre for this story
-            foreach (GenreModel g in Model.storyViewModel.genreList)
+            foreach (GenreModel g in Model.storyViewModel.genreViewModel.genreList)
             {
                 if (g.genreID == story.storyGenreID)
                 {

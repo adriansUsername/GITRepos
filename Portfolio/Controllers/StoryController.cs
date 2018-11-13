@@ -171,7 +171,7 @@ namespace Portfolio.Controllers
 
             foreach (RestrictionModel r in restrictions)
             {
-                storyViewModel.restrictionOptions.Add(new SelectListItem
+                storyViewModel.restrictionViewModel.restrictionOptions.Add(new SelectListItem
                 {
                     Text = r.restrictionName,
                     Value = r.restrictionID.ToString()
@@ -183,7 +183,7 @@ namespace Portfolio.Controllers
 
             foreach (GenreModel g in genres)
             {
-                storyViewModel.genreOptions.Add(new SelectListItem
+                storyViewModel.genreViewModel.genreOptions.Add(new SelectListItem
                 {
                     Text = g.genreName,
                     Value = g.genreID.ToString()

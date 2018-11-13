@@ -27,7 +27,7 @@
 
             @Html.LabelFor(m => m.singleStory.storyGenreID, "Genre")
             <br />
-            @Html.DropDownListFor(m => m.singleStory.storyGenreID, Model.genreOptions)
+            @Html.DropDownListFor(m => m.singleStory.storyGenreID, Model.genreViewModel.genreOptions)
 
         </div>
 
@@ -35,7 +35,7 @@
 
             @Html.LabelFor(m => m.singleStory.storyRestrictionID, "Age Restriction")
             <br />
-            @Html.DropDownListFor(m => m.singleStory.storyRestrictionID, Model.restrictionOptions)
+            @Html.DropDownListFor(m => m.singleStory.storyRestrictionID, Model.restrictionViewModel.restrictionOptions)
 
         </div>
 
