@@ -28,7 +28,7 @@ namespace BusinessLogicLayer
                 int sum = 0;
                 int count = 0;
 
-                // Find all the ratings for one story, add and count
+                // Find all the ratings for one story, add and count the amount
                 foreach(RatingsBLO r in allRatings)
                 {
                     if(rating.ratingsStoryID == r.ratingsStoryID)

@@ -35,6 +35,7 @@ namespace DataAccessLayer
                         _command.Parameters.AddWithValue("@storyGenreID", story.storyGenreID);
                         _command.Parameters.AddWithValue("@storyTitle", story.storyTitle);
                         _command.Parameters.AddWithValue("@storyURL", story.storyURL);
+                        _command.Parameters.AddWithValue("@storyPublic", story.storyPublic);
                         // this is where the connection is opened
                         _connection.Open();
                         // this is where all commands will be executed
@@ -110,6 +111,7 @@ namespace DataAccessLayer
                         _command.Parameters.AddWithValue("@storyGenreID", story.storyGenreID);
                         _command.Parameters.AddWithValue("@storyEditorID", story.storyEditorID);
                         _command.Parameters.AddWithValue("@storyTitle", story.storyTitle);
+                        _command.Parameters.AddWithValue("@storyPublic", story.storyPublic);
                         // this is where the connection is opened
                         _connection.Open();
                         // this is where all commands will be executed
@@ -162,6 +164,7 @@ namespace DataAccessLayer
                             story.storyTitle = (string)_reader["storyTitle"];
                             story.storyURL = (string)_reader["storyURL"];
                             story.storyEditorID = (int)_reader["storyEditorID"];
+                            story.storyPublic = (bool)_reader["storyPublic"];
                         }
                     }
                 }
@@ -175,7 +178,7 @@ namespace DataAccessLayer
             return story;
         }
 
-        // VIEW ONE STORY
+        // VIEW ALL STORIES
         public List<StoryDAO> viewStories()
         {
             List<StoryDAO> storyList = new List<StoryDAO>();
@@ -204,13 +207,16 @@ namespace DataAccessLayer
                                     // create object to hold info from database
                                     StoryDAO story = new StoryDAO();
                                     story.storyID = (int)_reader["storyID"];
-                                    story.storyRating = (int)_reader["storyRating"];
+                                    story.storyRating = (double)_reader["storyRating"];
                                     story.storyRestrictionID = (int)_reader["storyRestrictionID"];
                                     story.storyUserID = (int)_reader["storyUserID"];
                                     story.storyGenreID = (int)_reader["storyGenreID"];
                                     story.storyTitle = (string)_reader["storyTitle"];
                                     story.storyURL = (string)_reader["storyURL"];
                                     story.storyEditorID = (int)_reader["storyEditorID"];
+                                    story.storyPublic = _reader.GetBoolean(_reader.GetOrdinal("storyPublic"));
+                                    // add to list to be returned
+                                    storyList.Add(story);
                                 }
                             }
                         }
@@ -224,44 +230,6 @@ namespace DataAccessLayer
             }
 
             return storyList;
-        }
-
-        // Get the youngest age a user can be to view/edit a story
-        public int minAge(StoryDAO story)
-        {
-            int minimumAge = 0;
-
-            try
-            {
-                // create connection to database using connection string variable
-                using (SqlConnection _connection = new SqlConnection(connectionString))
-                {
-                    // open the connection to the database
-                    _connection.Open();
-                    // create the sql code to run
-                    string sqlCommand = "SELECT restrictionAge FROM [Restriction] WHERE restrictionID = @storyRestriction";
-
-                    using (SqlCommand _command = new SqlCommand(sqlCommand, _connection))
-                    {
-                        _command.Parameters.AddWithValue("@storyRestriction", story.storyRestrictionID);
-                        // run the command
-                        _command.ExecuteNonQuery();
-
-                        // get the data from the select
-                        using (SqlDataReader _reader = _command.ExecuteReader())
-                        {
-                            minimumAge = (int)_reader["restrictionAge"];
-                        }
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                // use error data access to log error to the database
-                errorDA.addError(exception);
-            }
-
-            return minimumAge;
         }
     }
 }

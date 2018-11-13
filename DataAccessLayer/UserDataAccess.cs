@@ -15,7 +15,7 @@ namespace DataAccessLayer
         static string connectionString = ConfigurationManager.ConnectionStrings["Portfolio"].ConnectionString;
         ErrorDataAccess errorDA = new ErrorDataAccess();
 
-        // ADD USER TO DATABASE
+        // ADD USER
         public bool addUser(UserDAO user)
         {
             bool success = false;
@@ -57,7 +57,7 @@ namespace DataAccessLayer
             return success;
         }
 
-        // DELETE USER FROM DATABASE
+        // DELETE USER
         public bool deleteUser(int userID)
         {
             bool success = false;
@@ -91,7 +91,7 @@ namespace DataAccessLayer
             return success;
         }
 
-        // UPDATE USER IN DATABASE
+        // UPDATE USER
         public bool updateUser(UserDAO user)
         {
             bool success = false;
@@ -136,7 +136,7 @@ namespace DataAccessLayer
             return success;
         }
 
-        // VIEW USER IN DATABASE
+        // VIEW USER
         public UserDAO viewOneUser(int userID)
         {
             UserDAO user = new UserDAO();
@@ -186,7 +186,7 @@ namespace DataAccessLayer
             return user;
         }
 
-        // VIEW ALL USERS IN DATABASE
+        // VIEW ALL USERS
         public List<UserDAO> viewUsers()
         {
             List<UserDAO> userList = new List<UserDAO>();
@@ -243,7 +243,7 @@ namespace DataAccessLayer
             return userList;
         }
 
-        // LOGIN A USER
+        // LOGIN USER
         public UserDAO login(string username, string userpassword)
         {
             UserDAO user = new UserDAO();

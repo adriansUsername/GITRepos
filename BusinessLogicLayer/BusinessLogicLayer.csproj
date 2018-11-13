@@ -44,6 +44,8 @@
     <Compile Include="BL_Objects\ErrorBLO.cs" />
     <Compile Include="BL_Objects\GenreBLO.cs" />
     <Compile Include="BL_Objects\RatingsBLO.cs" />
+    <Compile Include="BL_Objects\RestrictionBLO.cs" />
+    <Compile Include="BL_Objects\RoleBLO.cs" />
     <Compile Include="BL_Objects\StoryBLO.cs" />
     <Compile Include="BL_Objects\UpdateBLO.cs" />
     <Compile Include="BL_Objects\UserBLO.cs" />

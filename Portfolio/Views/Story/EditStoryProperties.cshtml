@@ -1,0 +1,69 @@
+﻿@model Portfolio.Models.StoryViewModel
+@using Portfolio.Models
+
+@{
+    ViewBag.Title = "EditStoryProperties";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Story Properties</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+
+        <div class="form-group">
+
+            @Html.LabelFor(m => m.singleStory.storyTitle)
+            <br />
+            @Html.TextBoxFor(m => m.singleStory.storyTitle, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.singleStory.storyTitle)
+
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(m => m.singleStory.storyGenreID, "Genre")
+            <br />
+            @Html.DropDownListFor(m => m.singleStory.storyGenreID, Model.genreViewModel.genreOptions)
+
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(m => m.singleStory.storyRestrictionID, "Age Restriction")
+            <br />
+            @Html.DropDownListFor(m => m.singleStory.storyRestrictionID, Model.restrictionViewModel.restrictionOptions)
+
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(m => m.singleStory.storyPublic, "Make Public")
+            @Html.EditorFor(m => m.singleStory.storyPublic)
+            <br />
+            @Html.ValidationMessageFor(m => m.singleStory.storyPublic)
+
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(m => m.singleStory.storyURL)
+            <br />
+            @Html.TextBoxFor(m => m.singleStory.storyURL, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.singleStory.storyURL)
+
+        </div>
+
+        @Html.HiddenFor(m => m.singleStory.storyID)
+        @Html.HiddenFor(m => m.singleStory.storyEditorID)
+
+    </div>
+
+    <input type="submit" value="Update" class="btn btn-warning" />
+}
+
+<div>
+</div>

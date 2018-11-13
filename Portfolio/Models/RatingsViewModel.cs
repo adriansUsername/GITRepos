@@ -7,13 +7,13 @@ namespace Portfolio.Models
 {
     public class RatingsViewModel
     {
-        RatingsModel singleRating { get; set; }
-        List<RatingsModel> ratingList { get; set; }
+        public RatingsModel singleRatings { get; set; }
+        public List<RatingsModel> ratingsList { get; set; }
 
         public RatingsViewModel()
         {
-            singleRating = new RatingsModel();
-            ratingList = new List<RatingsModel>();
+            singleRatings = new RatingsModel();
+            ratingsList = new List<RatingsModel>();
         }
     }
 }

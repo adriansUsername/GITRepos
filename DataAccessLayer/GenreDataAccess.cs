@@ -85,7 +85,7 @@ namespace DataAccessLayer
             return success;
         }
 
-        // UPDATE GENRE iN DATABASE
+        // UPDATE GENRE IN DATABASE
         public bool updateGenre(GenreDAO genre)
         {
             bool success = false;

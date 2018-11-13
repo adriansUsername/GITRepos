@@ -1,0 +1,13 @@
+﻿@model Portfolio.Models.StoryModel
+
+@{
+    ViewBag.Title = "DeleteStory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Success!</h2>
+
+<h4>You have deleted this story.</h4>
+<br />
+
+@Html.ActionLink("Return To Profile", "UserProfile", "User", Model.storyUserID, null)

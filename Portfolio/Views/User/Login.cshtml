@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Login</h2>
@@ -12,17 +13,18 @@
 
         <div class="form-group">
 
-            @Html.LabelFor(m => m.singleUser.UserName)
-            @Html.EditorFor(m => m.singleUser.UserName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.singleUser.UserName)
+            @Html.LabelFor(m => m.singleUser.userName)
+            <br />
+            @Html.TextBoxFor(m => m.singleUser.userName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.singleUser.userName)
 
         </div>
 
         <div class="form-group">
 
-            @Html.LabelFor(m => m.singleUser.UserPassword)
-            @Html.PasswordFor(m => m.singleUser.UserPassword, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.singleUser.UserPassword)
+            @Html.LabelFor(m => m.singleUser.userPassword)
+            @Html.PasswordFor(m => m.singleUser.userPassword, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.singleUser.userPassword)
 
         </div>
 
