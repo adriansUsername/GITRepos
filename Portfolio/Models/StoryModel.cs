@@ -41,6 +41,7 @@ namespace Portfolio.Models
         [Required]
         public bool storyPublic { get; set; }
 
+        public bool hasEditor { get; set; } = false;
         public bool isSelected { get; set; } = false;
     }
 }
